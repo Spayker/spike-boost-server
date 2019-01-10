@@ -1,4 +1,4 @@
-package com.spikeboost.spayker.spikeboost;
+package com.spayker.spikeboost;
 
 import org.junit.Test;
 

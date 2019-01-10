@@ -1,4 +1,4 @@
-package com.spikeboost.spayker.spikeboost;
+package com.spayker.spikeboost;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.spikeboost.spayker.spikeboost", appContext.getPackageName());
+        assertEquals("com.spayker.spikeboost", appContext.getPackageName());
     }
 }
