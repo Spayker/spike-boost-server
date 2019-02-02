@@ -1,5 +1,7 @@
 # SpikeBoost
 
+
+## Description
 SpikeBoost helps to solve the issue with annoying searching of best soundtrack in list.
 Especially when you take part in some physical activities and you have a choice to listen music simultaneously.
 
@@ -27,3 +29,11 @@ For client side:
 5) Test Instrumentation
 6) FireBase API
 
+## Technology stack
+
+## How to get started
+
+## How to use
+
+## License
+MIT
