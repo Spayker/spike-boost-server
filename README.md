@@ -14,7 +14,7 @@ Basically client side will be deployed on mobile platforms such as Android, IoS.
 ### Stack of technologies
 
 For server side:
-1) Java 9
+1) Java 8
 2) Spring Boot 
 3) Rest
 4) Spring Security
@@ -29,11 +29,11 @@ For client side:
 5) Test Instrumentation
 6) FireBase API
 
-## Technology stack
-
 ## How to get started
+Please check each android and server fodlers for more info
 
 ## How to use
+Please check each android and server fodlers for more info
 
 ## License
 MIT
