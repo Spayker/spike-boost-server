@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<full-backup-content>
-    <include domain="sharedpref" path="string" requiredFlags="deviceToDeviceTransfer"/>
-    <include domain="database" path="string" requiredFlags="deviceToDeviceTransfer"/>
-</full-backup-content>
