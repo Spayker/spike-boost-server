@@ -1,5 +1,11 @@
 # SpikeBoost
 
+## Project status
+
+### Server build
+[![Build Status](https://travis-ci.com/Spayker/spike-boost.svg?token=jG3sXfQvSVtz8PKVCuMp&branch=master)](https://travis-ci.com/Spayker/spike-boost)
+
+### Android build
 
 ## Description
 SpikeBoost helps to solve the issue with annoying searching of best soundtrack in list.
