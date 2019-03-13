@@ -1,5 +1,6 @@
-# SpikeBoost
+# SpikeBoost Server Part
 
+## spike-boost-android-solution
 Basically client side will be deployed on mobile platforms such as Android, IoS.
 It contains prepared to run neural network and data to process sensor's data in realtime.
 
@@ -25,4 +26,21 @@ For client side:
 4) Test Espresso
 5) Test Instrumentation
 6) FireBase API
+=======
+## Project status
+[![Build Status](https://travis-ci.com/Spayker/spike-boost.svg?token=jG3sXfQvSVtz8PKVCuMp&branch=spike-boost-server-solution)](https://travis-ci.com/Spayker/spike-boost)
+
+Server part offers following features:
+1) user authorization
+2) storing of training tracks on cloud side
+3) get new audio tracks
+4) sharing workout results with preferable music 
+
+Technical Stack:
+1) Java 8
+2) Spring Boot 
+3) Rest
+4) Spring Security
+5) Junit 5
+6) Mockito
 
