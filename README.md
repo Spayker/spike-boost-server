@@ -1,7 +1,7 @@
 # SpikeBoost Server Part
 
 ## Project status
-[![Build Status](https://travis-ci.com/Spayker/spike-boost.svg?token=jG3sXfQvSVtz8PKVCuMp&branch=master)](https://travis-ci.com/Spayker/spike-boost)
+[![Build Status](https://travis-ci.com/Spayker/spike-boost.svg?token=jG3sXfQvSVtz8PKVCuMp&branch=spike-boost-server-solution)](https://travis-ci.com/Spayker/spike-boost)
 
 Server part offers following features:
 1) user authorization
