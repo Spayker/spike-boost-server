@@ -7,17 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-//import com.zhaoxiaodan.miband.ActionCallback;
-//import com.zhaoxiaodan.miband.MiBand;
-//import com.zhaoxiaodan.miband.listeners.RealtimeStepsNotifyListener;
-//import com.zhaoxiaodan.miband.model.UserInfo;
-
 import io.reactivex.disposables.Disposable;
 import zhaoxiaodan.miband.ActionCallback;
 import zhaoxiaodan.miband.MiBand;
-import zhaoxiaodan.miband.model.UserInfo;
 
-import static java.lang.Thread.sleep;
 import static zhaoxiaodan.miband.model.VibrationMode.VIBRATION_WITHOUT_LED;
 
 public class MainActivity extends AppCompatActivity {

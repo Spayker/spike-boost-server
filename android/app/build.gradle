@@ -45,8 +45,4 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     implementation "com.polidea.rxandroidble2:rxandroidble:1.9.1"
-
-    implementation "com.zhaoxiaodan.miband:miband-sdk:1.1.2"
-
-
 }
