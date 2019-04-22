@@ -34,6 +34,8 @@ For client side:
 4) Test Espresso
 5) Test Instrumentation
 6) FireBase API
+7) Google Fit
+8) rxandroidble
 
 ## How to get started
 Please check each android and server fodlers for more info
