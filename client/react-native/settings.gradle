@@ -1,0 +1,3 @@
+rootProject.name = 'spikeboost'
+
+include ':app'
