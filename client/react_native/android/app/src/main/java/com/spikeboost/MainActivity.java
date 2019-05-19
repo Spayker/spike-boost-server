@@ -1,4 +1,4 @@
-package com.react_native;
+package com.spikeboost;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "react_native";
+        return "spikeboost";
     }
 }

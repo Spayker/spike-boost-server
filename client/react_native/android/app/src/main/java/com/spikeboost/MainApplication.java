@@ -1,4 +1,4 @@
-package com.react_native;
+package com.spikeboost;
 
 import android.app.Application;
 

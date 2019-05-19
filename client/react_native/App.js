@@ -7,23 +7,38 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Button} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <View style={styles.package}>
+          <Text style={styles.sensor_header}>Heart Beat:</Text>
+          <Text style={styles.sensor_value}>0 Bpm</Text>
+        </View>
+
+        <View style={styles.package}>
+          <Text style={styles.sensor_header}>Training Time:</Text>
+          <Text style={styles.sensor_value}>0 S</Text>
+        </View>
+
+        <View style={styles.package}>
+          <Text style={styles.sensor_header}>Speed:</Text>
+          <Text style={styles.sensor_value}>0 Km/H</Text>
+        </View>
+
+        <View style={styles.package}>
+          <Text style={styles.sensor_header}>Passed Distance:</Text>
+          <Text style={styles.sensor_value}>0 Km</Text>
+        </View>
+
+        <View style={styles.package_center}>
+          <Button
+            onPress={() => {}}
+            title="Start"/>
+        </View>
+
       </View>
     );
   }
@@ -32,18 +47,32 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+    margin: 5
   },
-  welcome: {
+  package: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#F5FCFF',
+    margin: 5
+  },
+  package_center:{
+    flex: 1,
+    textAlign: 'center'
+  },
+  sensor_header: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    textAlign: 'left'
+  },
+  sensor_value: {
+    fontSize: 20,
+    textAlign: 'right'
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
+    marginBottom: 5
   },
 });
