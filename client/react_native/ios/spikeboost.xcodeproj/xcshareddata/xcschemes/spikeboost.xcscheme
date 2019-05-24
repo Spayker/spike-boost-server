@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "react_native.app"
-               BlueprintName = "react_native"
-               ReferencedContainer = "container:react_native.xcodeproj">
+               BuildableName = "spikeboost.app"
+               BlueprintName = "spikeboost"
+               ReferencedContainer = "container:spikeboost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "react_nativeTests.xctest"
-               BlueprintName = "react_nativeTests"
-               ReferencedContainer = "container:react_native.xcodeproj">
+               BuildableName = "spikeboostTests.xctest"
+               BlueprintName = "spikeboostTests"
+               ReferencedContainer = "container:spikeboost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "react_nativeTests.xctest"
-               BlueprintName = "react_nativeTests"
-               ReferencedContainer = "container:react_native.xcodeproj">
+               BuildableName = "spikeboostTests.xctest"
+               BlueprintName = "spikeboostTests"
+               ReferencedContainer = "container:spikeboost.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "react_native.app"
-            BlueprintName = "react_native"
-            ReferencedContainer = "container:react_native.xcodeproj">
+            BuildableName = "spikeboost.app"
+            BlueprintName = "spikeboost"
+            ReferencedContainer = "container:spikeboost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "react_native.app"
-            BlueprintName = "react_native"
-            ReferencedContainer = "container:react_native.xcodeproj">
+            BuildableName = "spikeboost.app"
+            BlueprintName = "spikeboost"
+            ReferencedContainer = "container:spikeboost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "react_native.app"
-            BlueprintName = "react_native"
-            ReferencedContainer = "container:react_native.xcodeproj">
+            BuildableName = "spikeboost.app"
+            BlueprintName = "spikeboost"
+            ReferencedContainer = "container:spikeboost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

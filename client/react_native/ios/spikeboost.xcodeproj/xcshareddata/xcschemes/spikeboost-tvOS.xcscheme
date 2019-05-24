@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "react_native-tvOS.app"
-               BlueprintName = "react_native-tvOS"
-               ReferencedContainer = "container:react_native.xcodeproj">
+               BuildableName = "spikeboost-tvOS.app"
+               BlueprintName = "spikeboost-tvOS"
+               ReferencedContainer = "container:spikeboost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "react_native-tvOSTests.xctest"
-               BlueprintName = "react_native-tvOSTests"
-               ReferencedContainer = "container:react_native.xcodeproj">
+               BuildableName = "spikeboost-tvOSTests.xctest"
+               BlueprintName = "spikeboost-tvOSTests"
+               ReferencedContainer = "container:spikeboost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "react_native-tvOSTests.xctest"
-               BlueprintName = "react_native-tvOSTests"
-               ReferencedContainer = "container:react_native.xcodeproj">
+               BuildableName = "spikeboost-tvOSTests.xctest"
+               BlueprintName = "spikeboost-tvOSTests"
+               ReferencedContainer = "container:spikeboost.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "react_native-tvOS.app"
-            BlueprintName = "react_native-tvOS"
-            ReferencedContainer = "container:react_native.xcodeproj">
+            BuildableName = "spikeboost-tvOS.app"
+            BlueprintName = "spikeboost-tvOS"
+            ReferencedContainer = "container:spikeboost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "react_native-tvOS.app"
-            BlueprintName = "react_native-tvOS"
-            ReferencedContainer = "container:react_native.xcodeproj">
+            BuildableName = "spikeboost-tvOS.app"
+            BlueprintName = "spikeboost-tvOS"
+            ReferencedContainer = "container:spikeboost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "react_native-tvOS.app"
-            BlueprintName = "react_native-tvOS"
-            ReferencedContainer = "container:react_native.xcodeproj">
+            BuildableName = "spikeboost-tvOS.app"
+            BlueprintName = "spikeboost-tvOS"
+            ReferencedContainer = "container:spikeboost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
