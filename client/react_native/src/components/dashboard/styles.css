@@ -1,0 +1,35 @@
+.container {
+    flex: 1;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.package {
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    background-color: #F5FCFF;
+    margin: 5px;
+}
+
+.package_center{
+    flex: 1;
+    text-align: center;
+};
+
+.sensor_header {
+    font-size: 20;
+    text-align: left;
+}
+
+.sensor_value {
+    font-size: 20;
+    text-align: right;
+}
+
+.instructions {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 5px;
+}
