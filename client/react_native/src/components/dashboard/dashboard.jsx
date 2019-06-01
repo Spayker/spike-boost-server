@@ -1,9 +1,33 @@
 import React from 'react'
-import {Text, View, Button} from 'react-native';
+import {Text, View, Button, NativeModules} from 'react-native';
 import styles from "./styles.css";
 
 
 export default class Dashboard extends React.Component {
+
+    constructor(props) {
+
+        super(props);
+        this.state = { isOn: false };  
+        this.updateStatus();
+      
+    }
+
+    turnOn = () => {
+        NativeModules.Bulb.turnOn();
+        this.updateStatus()
+    }
+
+    turnOff = () => {
+        NativeModules.Bulb.turnOff();
+        this.updateStatus()
+    }
+
+    updateStatus = () => {
+        NativeModules.Bulb.getStatus( (error, isOn)=>{
+        this.setState({ isOn: isOn});
+      })  
+    }
 
     render() {
         return (
@@ -29,9 +53,13 @@ export default class Dashboard extends React.Component {
                 </View>
 
                 <View style={styles.package_center}>
-                    <Button
-                        onPress={() => {}}
-                        title="Start"/>
+                {
+                    !this.state.isOn 
+                        ? 
+                    <Button onPress={this.turnOn} title="Turn ON " color="#FF6347"/> 
+                        :
+                    <Button onPress={this.turnOff} title="Turn OFF " color="#FF6340" />
+                }
                 </View>
             </View>
         );
