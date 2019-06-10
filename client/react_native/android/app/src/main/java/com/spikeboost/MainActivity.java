@@ -1,12 +1,8 @@
 package com.spikeboost;
 
-import android.content.Context;
-
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
-
-    private static Context mainContext;
 
     /**
      * Returns the name of the main component registered from JavaScript.
@@ -14,12 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        mainContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
         return "spikeboost";
     }
-
-    public static Context getMainContext(){
-        return mainContext;
-    }
-
 }

@@ -25,7 +25,7 @@ import com.spikeboost.MainActivity;
 import java.util.ArrayList;
 
 import static android.content.Context.BLUETOOTH_SERVICE;
-import static com.spikeboost.MainActivity.getMainContext;
+//import static com.spikeboost.MainActivity.getMainContext;
 
 public class DeviceConnector  extends ReactContextBaseJavaModule {
 
@@ -51,7 +51,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
 
 
     private String enableBTAndDiscover() {
-        Context mainContext = getMainContext();
+        Context mainContext = null;//getMainContext();
         final BluetoothAdapter bluetoothAdapter = ((BluetoothManager) mainContext.getSystemService(BLUETOOTH_SERVICE)).getAdapter();
 
         final ProgressDialog searchProgress = new ProgressDialog(mainContext);

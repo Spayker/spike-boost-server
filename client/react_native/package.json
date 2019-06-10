@@ -11,7 +11,7 @@
   "dependencies": {
     "cypress": "^3.3.1",
     "react": "16.8.3",
-    "react-native": "0.59.8",
+    "react-native": "^0.59.9",
     "react-native-css-transformer": "^1.2.4"
   },
   "devDependencies": {
