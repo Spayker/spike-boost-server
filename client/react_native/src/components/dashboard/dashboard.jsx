@@ -6,27 +6,14 @@ import styles from "./styles.css";
 export default class Dashboard extends React.Component {
 
     constructor(props) {
-
         super(props);
-        this.state = { isOn: false };  
-        this.updateStatus();
-      
+        this.state = { foundDeviceName: 'None' };  
     }
 
-    turnOn = () => {
-        NativeModules.Bulb.turnOn();
-        this.updateStatus()
-    }
-
-    turnOff = () => {
-        NativeModules.Bulb.turnOff();
-        this.updateStatus()
-    }
-
-    updateStatus = () => {
-        NativeModules.Bulb.getStatus( (error, isOn)=>{
-        this.setState({ isOn: isOn});
-      })  
+    searchBluetoothDevices = () => {
+        NativeModules.DeviceConnector.enableBTAndDiscover( (error, foundDeviceName)=>{
+            this.setState({ foundDeviceName: foundDeviceName});
+        })
     }
 
     render() {
@@ -37,7 +24,7 @@ export default class Dashboard extends React.Component {
                     <Text style={styles.sensor_value}>0 Bpm</Text>
                 </View>
 
-                <View style={styles.package}>
+                {/* <View style={styles.package}>
                     <Text style={styles.sensor_header}>Training Time:</Text>
                     <Text style={styles.sensor_value}>0 S</Text>
                 </View>
@@ -50,15 +37,11 @@ export default class Dashboard extends React.Component {
                 <View style={styles.package}>
                     <Text style={styles.sensor_header}>Passed Distance:</Text>
                     <Text style={styles.sensor_value}>0 Km</Text>
-                </View>
+                </View> */}
 
                 <View style={styles.package_center}>
                 {
-                    !this.state.isOn 
-                        ? 
-                    <Button onPress={this.turnOn} title="Turn ON " /> 
-                        :
-                    <Button onPress={this.turnOff} title="Turn OFF " />
+                    <Button key="testButton" onPress={this.searchBluetoothDevices} title={this.state.foundDeviceName} /> 
                 }
                 </View>
             </View>

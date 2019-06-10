@@ -16,16 +16,16 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.spikeboost.MainActivity;
+import com.facebook.react.bridge.ReactMethod;
 
 import java.util.ArrayList;
 
 import static android.content.Context.BLUETOOTH_SERVICE;
-//import static com.spikeboost.MainActivity.getMainContext;
+import static com.spikeboost.MainActivity.getMainContext;
 
 public class DeviceConnector  extends ReactContextBaseJavaModule {
 
@@ -37,21 +37,22 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
     private static final String MI_BAND_3_NAME = "Mi Band 3";
 
     // UI components section
-    private ListView deviceListView;
+    // private ListView deviceListView;
 
     // Miscellaneous
-    private ArrayAdapter<?> genericListAdapter;
+    //private ArrayAdapter<?> genericListAdapter;
     private ArrayList<BluetoothDevice> deviceArrayList;
 
+    private static String foundDeviceName = "test test test";
 
 
     DeviceConnector(ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
-
-    private String enableBTAndDiscover() {
-        Context mainContext = null;//getMainContext();
+    @ReactMethod
+    public void enableBTAndDiscover(Callback successCallback) {
+        Context mainContext = getMainContext();
         final BluetoothAdapter bluetoothAdapter = ((BluetoothManager) mainContext.getSystemService(BLUETOOTH_SERVICE)).getAdapter();
 
         final ProgressDialog searchProgress = new ProgressDialog(mainContext);
@@ -62,12 +63,6 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
         searchProgress.show();
 
         deviceArrayList = new ArrayList<>();
-        genericListAdapter = new ArrayAdapter<>(mainContext, android.R.layout.simple_list_item_1, deviceArrayList);
-        deviceListView.setAdapter(genericListAdapter);
-
-        if (bluetoothAdapter == null) {
-            return "Bluetooth not supported on this device";
-        }
 
         if (!bluetoothAdapter.isEnabled()) {
             ((AppCompatActivity)mainContext).startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), 1);
@@ -81,9 +76,10 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
                     Log.d("TAG", "Device found" + " " + result.getDevice().getAddress() + " " + deviceName);
                     if (!deviceArrayList.contains(result.getDevice())) {
                         deviceArrayList.add(result.getDevice());
-                        genericListAdapter.notifyDataSetChanged();
+                        foundDeviceName = result.getDevice().getName();
                         bluetoothAdapter.getBluetoothLeScanner().stopScan(this);
                         searchProgress.dismiss();
+                        successCallback.invoke(null, foundDeviceName);
                     }
                 }
             }
@@ -100,13 +96,12 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
             searchProgress.dismiss();
         }, 120000);
 
-        return "Device has been connected";
+
     }
 
     @Override
     public String getName() {
         return "DeviceConnector";
     }
-
 
 }
