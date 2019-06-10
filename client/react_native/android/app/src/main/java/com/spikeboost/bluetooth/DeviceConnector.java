@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -95,7 +94,6 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
             bluetoothAdapter.getBluetoothLeScanner().stopScan(leDeviceScanCallback);
             searchProgress.dismiss();
         }, 120000);
-
 
     }
 

@@ -8,6 +8,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.spikeboost.bluetooth.DeviceConnectorPackage;
+import com.spikeboost.metric.HeartBeatMeasurerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
           new MainReactPackage(),
-          new DeviceConnectorPackage()
+          new DeviceConnectorPackage(),
+          new HeartBeatMeasurerPackage()
       );
     }
 
@@ -42,7 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
+    SoLoader.init(this, false);
   }
 
 
