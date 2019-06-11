@@ -2,13 +2,16 @@ import React from 'react'
 import {Text, View, Button, NativeModules} from 'react-native';
 import styles from "./styles.css";
 
+const bondLevelLabel = "Bond Level: ";
 
 export default class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { foundDeviceName: 'None' };  
-        this.state = { deviceBondLevel: 0 };  
+        this.state = { 
+            foundDeviceName: 'None',
+            deviceBondLevel: 0
+        };  
     }
 
     searchBluetoothDevices = () => {
@@ -54,7 +57,7 @@ export default class Dashboard extends React.Component {
 
                 <View style={styles.package_center}>
                 {
-                    <Button onPress={this.connectMiBandDevice} title={"Bond Level: " + this.state.deviceBondLevel} /> 
+                    <Button onPress={this.connectMiBandDevice} title={bondLevelLabel + this.state.deviceBondLevel} /> 
                 }
                 </View>
             </View>

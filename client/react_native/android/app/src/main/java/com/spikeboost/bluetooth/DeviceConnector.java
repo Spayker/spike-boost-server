@@ -42,7 +42,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
     //private ArrayAdapter<?> genericListAdapter;
     private ArrayList<BluetoothDevice> deviceArrayList;
 
-    private static String foundDeviceName = "test test test";
+    private static String foundDeviceName;
     private BluetoothDevice miBand;
 
 
@@ -96,7 +96,6 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
             bluetoothAdapter.getBluetoothLeScanner().stopScan(leDeviceScanCallback);
             searchProgress.dismiss();
         }, 120000);
-
     }
 
     @ReactMethod
