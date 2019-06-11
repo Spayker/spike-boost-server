@@ -8,10 +8,13 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.spikeboost.bluetooth.DeviceConnectorPackage;
+import com.spikeboost.common.ModuleStorage;
 import com.spikeboost.metric.HeartBeatMeasurerPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.spikeboost.common.ModuleStorage.getModuleStorage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -23,10 +26,11 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
+      ModuleStorage appModuleStorage = getModuleStorage();
       return Arrays.asList(
-          new MainReactPackage(),
-          new DeviceConnectorPackage(),
-          new HeartBeatMeasurerPackage()
+              appModuleStorage.getMainReactPackage(),
+              appModuleStorage.getDeviceConnectorPackage(),
+              appModuleStorage.getHeartBeatMeasurerPackage()
       );
     }
 

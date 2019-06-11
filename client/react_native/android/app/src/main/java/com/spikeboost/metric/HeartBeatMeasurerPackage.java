@@ -11,6 +11,8 @@ import java.util.List;
 
 public class HeartBeatMeasurerPackage implements ReactPackage {
 
+    private HeartBeatMeasurer heartBeatMeasurer;
+
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Collections.emptyList();
@@ -21,9 +23,18 @@ public class HeartBeatMeasurerPackage implements ReactPackage {
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new HeartBeatMeasurer(reactContext));
+        modules.add(initHeartBeatMeasurer(reactContext));
 
         return modules;
+    }
+
+    private HeartBeatMeasurer initHeartBeatMeasurer(ReactApplicationContext reactContext){
+        heartBeatMeasurer = new HeartBeatMeasurer(reactContext);
+        return heartBeatMeasurer;
+    }
+
+    public HeartBeatMeasurer getHeartBeatMeasurer() {
+        return heartBeatMeasurer;
     }
 
 

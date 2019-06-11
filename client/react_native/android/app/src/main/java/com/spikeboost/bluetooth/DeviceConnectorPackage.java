@@ -11,6 +11,7 @@ import java.util.List;
 
 public class DeviceConnectorPackage implements ReactPackage {
 
+    private DeviceConnector deviceConnector;
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
@@ -22,8 +23,17 @@ public class DeviceConnectorPackage implements ReactPackage {
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new DeviceConnector(reactContext));
+        modules.add(initDeviceConnector(reactContext));
 
         return modules;
+    }
+
+    private DeviceConnector initDeviceConnector(ReactApplicationContext reactContext){
+        deviceConnector = new DeviceConnector(reactContext);
+        return deviceConnector;
+    }
+
+    public DeviceConnector getDeviceConnector() {
+        return deviceConnector;
     }
 }

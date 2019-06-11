@@ -2,16 +2,15 @@ import React from 'react'
 import {Text, View, Button, NativeModules} from 'react-native';
 import styles from "./styles.css";
 
-const bondLevelLabel = "Bond Level: ";
-
 export default class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             foundDeviceName: 'None',
-            deviceBondLevel: 0
-        };  
+            deviceBondLevel: 0,
+            heartBeatRate: 0
+        };
     }
 
     searchBluetoothDevices = () => {
@@ -26,12 +25,18 @@ export default class Dashboard extends React.Component {
         })
     }
 
+    getHeartRate = () => {
+        NativeModules.HeartBeatMeasurer.getHeartRate( (error, heartBeatRate)=>{
+            this.setState({ heartBeatRate: heartBeatRate});
+        })
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.package}>
                     <Text style={styles.sensor_header}>Heart Beat:</Text>
-                    <Text style={styles.sensor_value}>0 Bpm</Text>
+                    <Text style={styles.sensor_value}>{this.state.heartBeatRate + ' Bpm'}</Text>
                 </View>
 
                 <View style={styles.package}>
@@ -57,7 +62,13 @@ export default class Dashboard extends React.Component {
 
                 <View style={styles.package_center}>
                 {
-                    <Button onPress={this.connectMiBandDevice} title={bondLevelLabel + this.state.deviceBondLevel} /> 
+                    <Button onPress={this.connectMiBandDevice} title={'Bond Level: ' + this.state.deviceBondLevel} /> 
+                }
+                </View>
+
+                <View style={styles.package_center}>
+                {
+                    <Button onPress={this.getHeartRate} title='Get Heart Rate' /> 
                 }
                 </View>
             </View>
