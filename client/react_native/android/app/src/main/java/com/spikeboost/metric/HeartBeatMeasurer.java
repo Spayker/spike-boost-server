@@ -24,8 +24,9 @@ public class HeartBeatMeasurer extends ReactContextBaseJavaModule {
     private BluetoothGatt bluetoothGatt;
     private BluetoothGattCharacteristic heartRateControlPointCharacteristic;
 
-    private String heartRateValue;
+    private String heartRateValue = "0";
     private final Object object = new Object();
+    private boolean shallSendRequestToDevice = true;
 
     HeartBeatMeasurer(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -49,52 +50,57 @@ public class HeartBeatMeasurer extends ReactContextBaseJavaModule {
                 }
             }
             heartRateValue = String.valueOf(characteristic.getValue()[1]);
+            shallSendRequestToDevice = true;
         });
     }
 
     @ReactMethod
     private void getHeartRate(Callback successCallback) {
-        variableService = bluetoothGatt.getService(UUIDs.HEART_RATE_SERVICE);
+        if(shallSendRequestToDevice){
+            variableService = bluetoothGatt.getService(UUIDs.HEART_RATE_SERVICE);
 
-        BluetoothGattCharacteristic heartRateCharacteristic = variableService.getCharacteristic(UUIDs.HEART_RATE_MEASUREMENT_CHARACTERISTIC);
-        BluetoothGattDescriptor heartRateDescriptor = heartRateCharacteristic.getDescriptor(UUIDs.HEART_RATE_MEASURMENT_DESCRIPTOR);
+            BluetoothGattCharacteristic heartRateCharacteristic = variableService.getCharacteristic(UUIDs.HEART_RATE_MEASUREMENT_CHARACTERISTIC);
+            BluetoothGattDescriptor heartRateDescriptor = heartRateCharacteristic.getDescriptor(UUIDs.HEART_RATE_MEASURMENT_DESCRIPTOR);
 
-        bluetoothGatt.setCharacteristicNotification(heartRateCharacteristic, true);
-        heartRateDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-        bluetoothGatt.writeDescriptor(heartRateDescriptor);
+            bluetoothGatt.setCharacteristicNotification(heartRateCharacteristic, true);
+            heartRateDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+            bluetoothGatt.writeDescriptor(heartRateDescriptor);
 
-        heartRateControlPointCharacteristic = variableService
-                .getCharacteristic(UUIDs.HEART_RATE_CONTROL_POINT_CHARACTERISTIC);
-        pause();
+            heartRateControlPointCharacteristic = variableService
+                    .getCharacteristic(UUIDs.HEART_RATE_CONTROL_POINT_CHARACTERISTIC);
+            pause();
 
-        BluetoothGattService variableSensorService = bluetoothGatt.getService(UUIDs.SENSOR_SERVICE);
-        BluetoothGattCharacteristic heartCharacteristicSensor
-                = variableSensorService.getCharacteristic(UUIDs.CHARACTER_SENSOR_CHARACTERISTIC);
-        pause();
+            BluetoothGattService variableSensorService = bluetoothGatt.getService(UUIDs.SENSOR_SERVICE);
+            BluetoothGattCharacteristic heartCharacteristicSensor
+                    = variableSensorService.getCharacteristic(UUIDs.CHARACTER_SENSOR_CHARACTERISTIC);
+            pause();
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x02, 0x00});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x02, 0x00});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x00});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x00});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
-        heartCharacteristicSensor.setValue(new byte[]{0x01, 0x03, 0x19});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartCharacteristicSensor.setValue(new byte[]{0x01, 0x03, 0x19});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x01, 0x00});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x01, 0x00});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x01});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x01});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
 
-        heartCharacteristicSensor.setValue(new byte[]{0x2});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        successCallback.invoke(null, heartRateValue);
+            heartCharacteristicSensor.setValue(new byte[]{0x2});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            successCallback.invoke(null, heartRateValue);
+            shallSendRequestToDevice = false;
+        }
+
     }
 
     private void pause(){

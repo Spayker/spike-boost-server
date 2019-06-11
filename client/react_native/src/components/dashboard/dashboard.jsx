@@ -9,7 +9,8 @@ export default class Dashboard extends React.Component {
         this.state = {
             foundDeviceName: 'None',
             deviceBondLevel: 0,
-            heartBeatRate: 0
+            heartBeatRate: 0,
+            interval: 5000
         };
     }
 
@@ -23,6 +24,10 @@ export default class Dashboard extends React.Component {
         NativeModules.DeviceConnector.connectDevice( (error, deviceBondLevel)=>{
             this.setState({ deviceBondLevel: deviceBondLevel});
         })
+    }
+
+    activateHeartRateCalculation = () => {
+        setInterval(this.getHeartRate, 1000)
     }
 
     getHeartRate = () => {
@@ -68,7 +73,7 @@ export default class Dashboard extends React.Component {
 
                 <View style={styles.package_center}>
                 {
-                    <Button onPress={this.getHeartRate} title='Get Heart Rate' /> 
+                    <Button onPress={this.activateHeartRateCalculation} title='Get Heart Rate' /> 
                 }
                 </View>
             </View>
