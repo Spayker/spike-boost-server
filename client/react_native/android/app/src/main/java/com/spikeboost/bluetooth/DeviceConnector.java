@@ -43,6 +43,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
     private ArrayList<BluetoothDevice> deviceArrayList;
 
     private static String foundDeviceName = "test test test";
+    private BluetoothDevice miBand;
 
 
     DeviceConnector(ReactApplicationContext reactContext) {
@@ -56,7 +57,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
 
         final ProgressDialog searchProgress = new ProgressDialog(mainContext);
         searchProgress.setIndeterminate(true);
-        searchProgress.setTitle("BlueTooth LE Device");
+        searchProgress.setTitle("MiBand Bluetooth Scanner");
         searchProgress.setMessage("Searching...");
         searchProgress.setCancelable(false);
         searchProgress.show();
@@ -76,6 +77,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
                     if (!deviceArrayList.contains(result.getDevice())) {
                         deviceArrayList.add(result.getDevice());
                         foundDeviceName = result.getDevice().getName();
+                        miBand = result.getDevice();
                         bluetoothAdapter.getBluetoothLeScanner().stopScan(this);
                         searchProgress.dismiss();
                         successCallback.invoke(null, foundDeviceName);
@@ -95,6 +97,17 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
             searchProgress.dismiss();
         }, 120000);
 
+    }
+
+    @ReactMethod
+    private void connectDevice(Callback successCallback) {
+        if (miBand.getBondState() == BluetoothDevice.BOND_NONE) {
+            miBand.createBond();
+            Log.d("Bond", "Created with Device");
+        }
+        Context mainContext = getMainContext();
+        bluetoothGatt = miBand.connectGatt(mainContext, true, miBandGattCallBack);
+        successCallback.invoke(null, bluetoothGatt.getDevice().getBondState());
     }
 
     @Override

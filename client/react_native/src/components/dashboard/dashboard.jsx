@@ -8,11 +8,18 @@ export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = { foundDeviceName: 'None' };  
+        this.state = { deviceBondLevel: 0 };  
     }
 
     searchBluetoothDevices = () => {
         NativeModules.DeviceConnector.enableBTAndDiscover( (error, foundDeviceName)=>{
             this.setState({ foundDeviceName: foundDeviceName});
+        })
+    }
+
+    connectMiBandDevice = () => {
+        NativeModules.DeviceConnector.connectDevice( (error, deviceBondLevel)=>{
+            this.setState({ deviceBondLevel: deviceBondLevel});
         })
     }
 
@@ -41,7 +48,13 @@ export default class Dashboard extends React.Component {
 
                 <View style={styles.package_center}>
                 {
-                    <Button key="testButton" onPress={this.searchBluetoothDevices} title={this.state.foundDeviceName} /> 
+                    <Button onPress={this.searchBluetoothDevices} title={this.state.foundDeviceName} /> 
+                }
+                </View>
+
+                <View style={styles.package_center}>
+                {
+                    <Button onPress={this.connectMiBandDevice} title={"Bond Level: " + this.state.deviceBondLevel} /> 
                 }
                 </View>
             </View>

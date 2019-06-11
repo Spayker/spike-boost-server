@@ -12,13 +12,6 @@ public class HeartBeatMeasurer extends ReactContextBaseJavaModule {
         super(reactContext);
     }
 
-
-
-
-
-
-
-
     @Nonnull
     @Override
     public String getName() {
