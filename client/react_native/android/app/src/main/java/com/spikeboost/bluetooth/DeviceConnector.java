@@ -23,15 +23,15 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.spikeboost.metric.HeartBeatMeasurer;
-import com.spikeboost.metric.HeartBeatMeasurerPackage;
 import com.spikeboost.metric.UUIDs;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import org.apache.commons.lang3.ArrayUtils;
 
 import static android.content.Context.BLUETOOTH_SERVICE;
 import static com.spikeboost.MainActivity.getMainContext;
@@ -226,12 +226,6 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
         getModuleStorage().getHeartBeatMeasurerPackage().getHeartBeatMeasurer().updateBluetoothConfig(bluetoothGatt);
         successCallback.invoke(null, bluetoothGatt.getDevice().getBondState());
     }
-
-    private void sendDataToHeartMeasureModule(){
-
-    }
-
-
 
     @Override
     public String getName() {

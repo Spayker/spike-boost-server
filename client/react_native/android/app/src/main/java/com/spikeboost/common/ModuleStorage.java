@@ -1,9 +1,7 @@
 package com.spikeboost.common;
 
 import com.facebook.react.shell.MainReactPackage;
-import com.spikeboost.bluetooth.DeviceConnector;
 import com.spikeboost.bluetooth.DeviceConnectorPackage;
-import com.spikeboost.metric.HeartBeatMeasurer;
 import com.spikeboost.metric.HeartBeatMeasurerPackage;
 
 public class ModuleStorage {
