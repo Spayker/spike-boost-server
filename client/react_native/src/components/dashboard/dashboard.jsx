@@ -9,14 +9,13 @@ export default class Dashboard extends React.Component {
         this.state = {
             foundDeviceName: 'None',
             deviceBondLevel: 0,
-            heartBeatRate: 0,
-            interval: 5000
+            heartBeatRate: 0
         };
     }
 
     searchBluetoothDevices = () => {
-        NativeModules.DeviceConnector.enableBTAndDiscover( (error, foundDeviceName)=>{
-            this.setState({ foundDeviceName: foundDeviceName});
+        NativeModules.DeviceConnector.enableBTAndDiscover( (error, deviceBondLevel)=>{
+            this.setState({ deviceBondLevel: deviceBondLevel});
         })
     }
 
@@ -26,13 +25,19 @@ export default class Dashboard extends React.Component {
         })
     }
 
-    activateHeartRateCalculation = () => {
-        setInterval(this.getHeartRate, 1000)
+    getDeviceBondLevel = () => {
+        NativeModules.DeviceConnector.getDeviceBondLevel( (error, deviceBondLevel)=>{
+            this.setState({ deviceBondLevel: deviceBondLevel}, () => {
+                this.getDeviceBondLevel
+            });
+        })
     }
 
-    getHeartRate = () => {
+    activateHeartRateCalculation = () => {
         NativeModules.HeartBeatMeasurer.getHeartRate( (error, heartBeatRate)=>{
-            this.setState({ heartBeatRate: heartBeatRate});
+            this.setState({ heartBeatRate: heartBeatRate}, () => {
+                this.activateHeartRateCalculation    
+            });
         })
     }
 
@@ -45,8 +50,8 @@ export default class Dashboard extends React.Component {
                 </View>
 
                 <View style={styles.package}>
-                    <Text style={styles.sensor_header}>Training Time:</Text>
-                    <Text style={styles.sensor_value}>0 S</Text>
+                    <Text style={styles.sensor_header}>Device Bound Level:</Text>
+                    <Text style={styles.sensor_value}>{this.state.deviceBondLevel}</Text>
                 </View>
 
                 <View style={styles.package}>
@@ -61,13 +66,7 @@ export default class Dashboard extends React.Component {
 
                 <View style={styles.package_center}>
                 {
-                    <Button onPress={this.searchBluetoothDevices} title={this.state.foundDeviceName} /> 
-                }
-                </View>
-
-                <View style={styles.package_center}>
-                {
-                    <Button onPress={this.connectMiBandDevice} title={'Bond Level: ' + this.state.deviceBondLevel} /> 
+                    <Button onPress={this.searchBluetoothDevices} title='Link With MiBand' /> 
                 }
                 </View>
 
