@@ -17,12 +17,7 @@ export default class Dashboard extends React.Component {
         NativeModules.DeviceConnector.enableBTAndDiscover( (error, deviceBondLevel)=>{
             this.setState({ deviceBondLevel: deviceBondLevel});
         })
-    }
-
-    connectMiBandDevice = () => {
-        NativeModules.DeviceConnector.connectDevice( (error, deviceBondLevel)=>{
-            this.setState({ deviceBondLevel: deviceBondLevel});
-        })
+        setInterval(this.getDeviceBondLevel, 2000)
     }
 
     getDeviceBondLevel = () => {
@@ -34,10 +29,15 @@ export default class Dashboard extends React.Component {
     }
 
     activateHeartRateCalculation = () => {
+        NativeModules.HeartBeatMeasurer.startHeartRateCalculation( (error, heartBeatRate)=>{
+            this.setState({ heartBeatRate: heartBeatRate});
+        })
+        setInterval(this.getHeartRate, 2000)
+    }
+
+    getHeartRate = () => {
         NativeModules.HeartBeatMeasurer.getHeartRate( (error, heartBeatRate)=>{
-            this.setState({ heartBeatRate: heartBeatRate}, () => {
-                this.activateHeartRateCalculation    
-            });
+            this.setState({ heartBeatRate: heartBeatRate});
         })
     }
 
