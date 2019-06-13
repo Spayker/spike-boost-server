@@ -2,10 +2,6 @@ package spayker.com.spikeboost;
 
 import java.util.UUID;
 
-/**
- * Created by kshitij.saxena on 17-11-2017.
- */
-
 class UUIDs {
 
     //Custom service 3 components

@@ -18,8 +18,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -269,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (newState) {
                     case BluetoothGatt.STATE_DISCONNECTED:
                         Log.d("Info", "Device disconnected");
-
                         break;
                     case BluetoothGatt.STATE_CONNECTED: {
                         Log.d("Info", "Connected with device");

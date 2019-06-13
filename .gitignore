@@ -27,6 +27,8 @@ project.xcworkspace
 #
 android/.project
 android/app/bin
+android/app/debug
+android/app/release
 build/
 .idea
 .gradle
