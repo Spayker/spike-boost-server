@@ -1,12 +1,6 @@
 import React from 'react'
 import {Text, View, Button, NativeModules} from 'react-native';
 import styles from "./styles.css";
-import MapView, { Marker, AnimatedRegion, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
-
-const LATITUDE_DELTA = 0.009;
-const LONGITUDE_DELTA = 0.009;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
 
 export default class Dashboard extends React.Component {
 
@@ -15,61 +9,9 @@ export default class Dashboard extends React.Component {
         this.state = {
             foundDeviceName: 'None',
             deviceBondLevel: 0,
-            heartBeatRate: 0,
-            latitude: LATITUDE,
-            longitude: LONGITUDE,
-            routeCoordinates: [],
-            distanceTravelled: 0,
-            prevLatLng: {},
-            coordinate: new AnimatedRegion({
-                latitude: LATITUDE,
-                longitude: LONGITUDE
-            })
+            heartBeatRate: 0
         };
     }
-
-    componentDidMount() {
-        this.watchID = navigator.geolocation.watchPosition(
-            position => {
-                const { coordinate, routeCoordinates, distanceTravelled } =   this.state;
-                const { latitude, longitude } = position.coords;
-                
-                const newCoordinate = {
-                    latitude,
-                    longitude
-                };
-            
-                if (Platform.OS === "android") {
-                    if (this.marker) {
-                        this.marker._component.animateMarkerToCoordinate(
-                            newCoordinate,
-                            500
-                        );
-                    }
-                } else {
-                    coordinate.timing(newCoordinate).start();
-                }
-        
-                this.setState({
-                    latitude,
-                    longitude,
-                    routeCoordinates: routeCoordinates.concat([newCoordinate]),
-                    distanceTravelled:
-                    distanceTravelled + this.calcDistance(newCoordinate),
-                    prevLatLng: newCoordinate
-                });
-            },
-            error => console.log(error),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        );
-    }
-
-    getMapRegion = () => ({
-        latitude: this.state.latitude,
-        longitude: this.state.longitude,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
-    });
 
     searchBluetoothDevices = () => {
         NativeModules.DeviceConnector.enableBTAndDiscover( (error, deviceBondLevel)=>{
