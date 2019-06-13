@@ -17,7 +17,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="161505821825-d0g00up69q57o0hcvri6hlvq3g2cjkmc.apps.googleusercontent.com"/>
+            android:value="AIzaSyCWUkPoCJENi2Wm70V9Hu32FGjUqkfFigU"/>
 
       <activity
         android:name="com.spikeboost.MainActivity"

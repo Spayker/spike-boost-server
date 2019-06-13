@@ -7,7 +7,6 @@ import {
     Platform,
     PermissionsAndroid
 } from "react-native";
-
 import MapView, {
     Marker,
     AnimatedRegion,
