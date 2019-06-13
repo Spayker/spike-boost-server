@@ -5,7 +5,8 @@ import {
     Text,
     TouchableOpacity,
     Platform,
-    PermissionsAndroid
+    PermissionsAndroid,
+    Dimensions
 } from "react-native";
 import MapView, {
     Marker,
@@ -16,174 +17,88 @@ import MapView, {
 import haversine from "haversine";
 //import styles from "./styles.css";
 
-const LATITUDE_DELTA = 0.009;
-const LONGITUDE_DELTA = 0.009;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
+const {width, height} = Dimensions.get('window')
+
+const SCREEN_HEIGHT = height
+const SCREEN_WIDTH = width
+const ASPECT_RATIO = width / height
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 export default class Map extends React.Component {
 
-    constructor(props) {
-        super(props);
-    
+    constructor() {
+        super()
         this.state = {
-          latitude: LATITUDE,
-          longitude: LONGITUDE,
-          routeCoordinates: [],
-          distanceTravelled: 0,
-          prevLatLng: {},
-          coordinate: new AnimatedRegion({
-            latitude: LATITUDE,
-            longitude: LONGITUDE,
+          initialPosition: {
+            latitude: 0,
+            longitude: 0,
             latitudeDelta: 0,
-            longitudeDelta: 0
-          })
-        };
+            longitudeDelta: 0,
+          },
+        }
       }
     
       componentDidMount() {
-        const { coordinate } = this.state;
+        navigator.geolocation.getCurrentPosition((position) => {
+          var lat = parseFloat(position.coords.latitude)
+          var long = parseFloat(position.coords.longitude)
     
-        this.requestCameraPermission();
-    
-        this.watchID = navigator.geolocation.watchPosition(
-          position => {
-            const { routeCoordinates, distanceTravelled } = this.state;
-            const { latitude, longitude } = position.coords;
-    
-            const newCoordinate = {
-              latitude,
-              longitude
-            };
-            console.log({ newCoordinate });
-    
-            if (Platform.OS === "android") {
-              if (this.marker) {
-                this.marker._component.animateMarkerToCoordinate(
-                  newCoordinate,
-                  500
-                );
-              }
-            } else {
-              coordinate.timing(newCoordinate).start();
-            }
-    
-            this.setState({
-              latitude,
-              longitude,
-              routeCoordinates: routeCoordinates.concat([newCoordinate]),
-              distanceTravelled:
-                distanceTravelled + this.calcDistance(newCoordinate),
-              prevLatLng: newCoordinate
-            });
-          },
-          error => console.log(error),
-          {
-            enableHighAccuracy: true,
-            timeout: 20000,
-            maximumAge: 1000,
-            distanceFilter: 10
+          var initialRegion = {
+            latitude: lat,
+            longitude: long,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
           }
-        );
+    
+          this.setState({initialPosition: initialRegion})
+        },
+        (error) => alert(JSON.stringify(error)),
+        { enableHighAccuracy: false, timeout: 30000, maximumAge: 3600000 });
       }
     
-      componentWillUnmount() {
-        navigator.geolocation.clearWatch(this.watchID);
-      }
     
-      getMapRegion = () => ({
-        latitude: this.state.latitude,
-        longitude: this.state.longitude,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
-      });
-    
-      calcDistance = newLatLng => {
-        const { prevLatLng } = this.state;
-        return haversine(prevLatLng, newLatLng) || 0;
-      };
-    
-      requestCameraPermission = async () => {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.CAMERA,
-            {
-              title: "Location Access Permission",
-              buttonNeutral: "Ask Me Later",
-              buttonNegative: "Cancel",
-              buttonPositive: "OK"
-            }
+      renderScreen = () => {
+          return (
+            <View style={styles.container}>
+              <MapView
+                style={styles.map}
+                initialRegion={this.state.initialPosition}>
+                    
+
+                    <Marker
+                        coordinate={{latitude: this.state.initialPosition.latitude, longitude: this.state.initialPosition.longitude}}
+                        title={'title'}
+                        description={'description'}
+                    />
+
+                </MapView>
+            </View>
           );
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log("You can use the camera");
-          } else {
-            console.log("Camera permission denied");
-          }
-        } catch (err) {
-          console.warn(err);
-        }
-      };
+      }
     
       render() {
         return (
-          <View style={styles.container}>
-            <MapView
-              style={styles.map}
-              provider={PROVIDER_GOOGLE}
-              showUserLocation
-              followUserLocation
-              loadingEnabled
-              region={this.getMapRegion()}
-            >
-              <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
-              <Marker.Animated
-                ref={marker => {
-                  this.marker = marker;
-                }}
-                coordinate={this.state.coordinate}
-              />
-            </MapView>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={[styles.bubble, styles.button]}>
-                <Text style={styles.bottomBarContent}>
-                  {parseFloat(this.state.distanceTravelled).toFixed(2)} km
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          this.renderScreen()
         );
       }
 }
 
 const styles = StyleSheet.create({
     container: {
-      ...StyleSheet.absoluteFillObject,
-      justifyContent: "flex-end",
-      alignItems: "center"
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      justifyContent: 'flex-end',
+      alignItems: 'center',
     },
     map: {
-      ...StyleSheet.absoluteFillObject
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
     },
-    bubble: {
-      flex: 1,
-      backgroundColor: "rgba(255,255,255,0.7)",
-      paddingHorizontal: 18,
-      paddingVertical: 12,
-      borderRadius: 20
-    },
-    latlng: {
-      width: 200,
-      alignItems: "stretch"
-    },
-    button: {
-      width: 80,
-      paddingHorizontal: 12,
-      alignItems: "center",
-      marginHorizontal: 10
-    },
-    buttonContainer: {
-      flexDirection: "row",
-      marginVertical: 20,
-      backgroundColor: "transparent"
-    }
   });
