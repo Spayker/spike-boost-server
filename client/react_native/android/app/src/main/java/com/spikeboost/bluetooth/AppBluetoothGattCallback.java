@@ -28,9 +28,8 @@ public class AppBluetoothGattCallback extends BluetoothGattCallback {
     private SharedPreferences sharedPreferences;
     private HeartBeatMeasurer heartBeatMeasurer;
 
-    AppBluetoothGattCallback(BluetoothGatt bluetoothGatt, SharedPreferences sharedPreferences,
+    AppBluetoothGattCallback(SharedPreferences sharedPreferences,
                              HeartBeatMeasurer heartBeatMeasurer){
-        this.bluetoothGatt = bluetoothGatt;
         this.sharedPreferences = sharedPreferences;
         this.heartBeatMeasurer = heartBeatMeasurer;
     }
@@ -134,6 +133,8 @@ public class AppBluetoothGattCallback extends BluetoothGattCallback {
     }
 
 
-
+    void updateBluetoothGatt(BluetoothGatt bluetoothGatt){
+        this.bluetoothGatt = bluetoothGatt;
+    }
 
 }
