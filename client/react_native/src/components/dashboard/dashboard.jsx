@@ -1,6 +1,12 @@
 import React from 'react'
 import {Text, View, Button, NativeModules} from 'react-native';
 import styles from "./styles.css";
+import MapView, { Marker, AnimatedRegion, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
+
+const LATITUDE_DELTA = 0.009;
+const LONGITUDE_DELTA = 0.009;
+const LATITUDE = 37.78825;
+const LONGITUDE = -122.4324;
 
 export default class Dashboard extends React.Component {
 
@@ -45,12 +51,12 @@ export default class Dashboard extends React.Component {
                 }
         
                 this.setState({
-                latitude,
-                longitude,
-                routeCoordinates: routeCoordinates.concat([newCoordinate]),
-                distanceTravelled:
-                distanceTravelled + this.calcDistance(newCoordinate),
-                prevLatLng: newCoordinate
+                    latitude,
+                    longitude,
+                    routeCoordinates: routeCoordinates.concat([newCoordinate]),
+                    distanceTravelled:
+                    distanceTravelled + this.calcDistance(newCoordinate),
+                    prevLatLng: newCoordinate
                 });
             },
             error => console.log(error),
