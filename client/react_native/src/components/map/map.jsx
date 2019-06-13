@@ -6,14 +6,15 @@ import {
     TouchableOpacity,
     Platform,
     PermissionsAndroid
-  } from "react-native";
-  import MapView, {
+} from "react-native";
+
+import MapView, {
     Marker,
     AnimatedRegion,
     Polyline,
     PROVIDER_GOOGLE
-  } from "react-native-maps";
-  import haversine from "haversine";
+} from "react-native-maps";
+import haversine from "haversine";
 //import styles from "./styles.css";
 
 const LATITUDE_DELTA = 0.009;
