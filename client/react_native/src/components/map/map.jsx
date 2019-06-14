@@ -25,6 +25,11 @@ const ASPECT_RATIO = width / height
 const LATITUDE_DELTA = 0.0922
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
+const Screen = {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  };
+
 export default class Map extends React.Component {
 
     constructor() {
@@ -62,17 +67,15 @@ export default class Map extends React.Component {
           return (
             <View style={styles.container}>
               <MapView
-                style={styles.map}
+                style={styles.mapContainer}
                 initialRegion={this.state.initialPosition}>
-                    
-
                     <Marker
                         coordinate={{latitude: this.state.initialPosition.latitude, longitude: this.state.initialPosition.longitude}}
                         title={'title'}
                         description={'description'}
                     />
-
                 </MapView>
+                <View style={styles.mapDrawerOverlay} />
             </View>
           );
       }
@@ -86,19 +89,19 @@ export default class Map extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
+      flex: 1,
     },
-    map: {
+    mapContainer: {
+      width: Screen.width,
+      height: Screen.height,
+    },
+    mapDrawerOverlay: {
       position: 'absolute',
-      top: 0,
       left: 0,
-      right: 0,
-      bottom: 0,
+      top: 0,
+      opacity: 0.0,
+      height: Dimensions.get('window').height,
+      width: 10,
     },
   });
+  

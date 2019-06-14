@@ -91,7 +91,7 @@ export default class App extends Component {
           <Dashboard/>
         </View>
 
-        <View style={styles.scrollPage} text="Screen 1" index={1}>
+        <View style={styles.scrollPage} text="Screen 2" index={1}>
           <Map/>
         </View>
       </Animated.ScrollView>
@@ -106,8 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   },
   scrollPage: {
-    width: SCREEN_WIDTH,
-    padding: 20
+    width: SCREEN_WIDTH
   },
   screen: {
     justifyContent: "center",
