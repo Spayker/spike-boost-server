@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
       top: 0,
       opacity: 0.0,
       height: Dimensions.get('window').height,
-      width: 10,
+      width: 25,
     },
   });
   

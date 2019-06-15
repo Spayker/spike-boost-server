@@ -45,22 +45,22 @@ export default class Dashboard extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.package}>
-                    <Text style={styles.sensor_header}>Heart Beat:</Text>
+                    <Text style={styles.sensor_value}>Heart Beat:</Text>
                     <Text style={styles.sensor_value}>{this.state.heartBeatRate + ' Bpm'}</Text>
                 </View>
 
                 <View style={styles.package}>
-                    <Text style={styles.sensor_header}>Device Bound Level:</Text>
+                    <Text style={styles.sensor_value}>Device BL:</Text>
                     <Text style={styles.sensor_value}>{this.state.deviceBondLevel}</Text>
                 </View>
 
                 <View style={styles.package}>
-                    <Text style={styles.sensor_header}>Speed:</Text>
+                    <Text style={styles.sensor_value}>Speed:</Text>
                     <Text style={styles.sensor_value}>0 Km/H</Text>
                 </View>
 
                 <View style={styles.package}>
-                    <Text style={styles.sensor_header}>Passed Distance:</Text>
+                    <Text style={styles.sensor_value}>Distance:</Text>
                     <Text style={styles.sensor_value}>0 Km</Text>
                 </View>
 
