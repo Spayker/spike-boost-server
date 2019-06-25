@@ -65,3 +65,4 @@ buck-out/
 
 # VS Code
 .vscode
+client/react_native/package-lock.json
