@@ -13,7 +13,6 @@ import Map from './components/map/index.js';
 import {
   Animated,
   Dimensions,
-  ScrollView,
   StyleSheet,
   Text,
   View
