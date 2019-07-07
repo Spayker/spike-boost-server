@@ -4,10 +4,6 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCallback;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattDescriptor;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
@@ -24,21 +20,12 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.spikeboost.metric.HeartBeatMeasurer;
-import com.spikeboost.metric.UUIDs;
-
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 
 import static android.content.Context.BLUETOOTH_SERVICE;
 import static com.spikeboost.MainActivity.getMainContext;
 import static com.spikeboost.common.ModuleStorage.getModuleStorage;
-import static com.spikeboost.metric.UUIDs.CUSTOM_SERVICE_AUTH_CHARACTERISTIC_STRING;
-import static com.spikeboost.metric.UUIDs.HEART_RATE_MEASUREMENT_CHARACTERISTIC_STRING;
 
 public class DeviceConnector  extends ReactContextBaseJavaModule {
 
@@ -146,7 +133,9 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
 
     @ReactMethod
     private void getDeviceBondLevel(Callback successCallback){
-        successCallback.invoke(null, bluetoothGatt.getDevice().getBondState());
+        if(bluetoothGatt != null){
+            successCallback.invoke(null, bluetoothGatt.getDevice().getBondState());
+        }
     }
 
     @Override

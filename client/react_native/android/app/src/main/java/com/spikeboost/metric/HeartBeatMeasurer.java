@@ -55,8 +55,8 @@ public class HeartBeatMeasurer extends ReactContextBaseJavaModule {
     @ReactMethod
     private void startHeartRateCalculation(Callback successCallback) {
         variableService = bluetoothGatt.getService(UUIDs.HEART_RATE_SERVICE);
-
-        BluetoothGattCharacteristic heartRateCharacteristic = variableService.getCharacteristic(UUIDs.HEART_RATE_MEASUREMENT_CHARACTERISTIC);
+        UUID heartRateCharacteristicCode = UUID.fromString(UUIDs.HEART_RATE_MEASUREMENT_CHARACTERISTIC_STRING);
+        BluetoothGattCharacteristic heartRateCharacteristic = variableService.getCharacteristic(heartRateCharacteristicCode);
         BluetoothGattDescriptor heartRateDescriptor = heartRateCharacteristic.getDescriptor(UUIDs.HEART_RATE_MEASURMENT_DESCRIPTOR);
 
         bluetoothGatt.setCharacteristicNotification(heartRateCharacteristic, true);
