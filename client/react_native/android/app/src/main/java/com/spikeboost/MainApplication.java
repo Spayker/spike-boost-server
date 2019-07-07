@@ -2,6 +2,7 @@ package com.spikeboost;
 
 import android.app.Application;
 
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.facebook.react.ReactApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -29,7 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
               appModuleStorage.getMainReactPackage(),
               appModuleStorage.getDeviceConnectorPackage(),
               appModuleStorage.getHeartBeatMeasurerPackage(),
-              new MapsPackage()
+              new MapsPackage(),
+              new RNFusedLocationPackage()
       );
     }
 
