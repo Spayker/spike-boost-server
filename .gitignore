@@ -43,6 +43,7 @@ yarn-error.log
 client/react_native/package-lock.json
 cypress/integration/examples
 client/react_native/cypress/integration/examples
+client/react_native/package-lock.json
 
 # BUCK
 buck-out/
