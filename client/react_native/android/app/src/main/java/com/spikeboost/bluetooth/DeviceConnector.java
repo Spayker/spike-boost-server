@@ -9,6 +9,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
@@ -114,7 +115,10 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
             miBandGattCallBack.updateBluetoothGatt(bluetoothGatt);
             searchProgress.dismiss();
         } else {
-            bluetoothAdapter.getBluetoothLeScanner().startScan(leDeviceScanCallback);
+            BluetoothLeScanner bluetoothScanner = bluetoothAdapter.getBluetoothLeScanner();
+            if(bluetoothScanner != null){
+                bluetoothScanner.startScan(leDeviceScanCallback);
+            }
         }
         new Handler().postDelayed(() -> {
             bluetoothAdapter.getBluetoothLeScanner().stopScan(leDeviceScanCallback);
