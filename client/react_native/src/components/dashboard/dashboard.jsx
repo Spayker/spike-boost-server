@@ -26,6 +26,8 @@ export default class Dashboard extends React.Component {
                 this.getDeviceBondLevel
             });
         })
+        //toDo: remove after test is done
+        // this.postDataOnServer()
     }
 
     activateHeartRateCalculation = () => {
@@ -39,6 +41,20 @@ export default class Dashboard extends React.Component {
         NativeModules.HeartBeatMeasurer.getHeartRate( (error, heartBeatRate)=>{
             this.setState({ heartBeatRate: heartBeatRate});
         })
+    }
+
+    postDataOnServer = () => {
+        fetch('https://148.251.138.115:9652/endpoint', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                firstParam: 'yourValue',
+                secondParam: 'yourOtherValue',
+            }),
+        });
     }
 
     render() {

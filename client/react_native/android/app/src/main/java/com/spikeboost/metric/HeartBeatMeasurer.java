@@ -56,45 +56,49 @@ public class HeartBeatMeasurer extends ReactContextBaseJavaModule {
     private void startHeartRateCalculation(Callback successCallback) {
         variableService = bluetoothGatt.getService(UUIDs.HEART_RATE_SERVICE);
         UUID heartRateCharacteristicCode = UUID.fromString(UUIDs.HEART_RATE_MEASUREMENT_CHARACTERISTIC_STRING);
-        BluetoothGattCharacteristic heartRateCharacteristic = variableService.getCharacteristic(heartRateCharacteristicCode);
-        BluetoothGattDescriptor heartRateDescriptor = heartRateCharacteristic.getDescriptor(UUIDs.HEART_RATE_MEASURMENT_DESCRIPTOR);
 
-        bluetoothGatt.setCharacteristicNotification(heartRateCharacteristic, true);
-        heartRateDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-        bluetoothGatt.writeDescriptor(heartRateDescriptor);
+        if(variableService != null){
+            BluetoothGattCharacteristic heartRateCharacteristic = variableService.getCharacteristic(heartRateCharacteristicCode);
+            BluetoothGattDescriptor heartRateDescriptor = heartRateCharacteristic.getDescriptor(UUIDs.HEART_RATE_MEASURMENT_DESCRIPTOR);
 
-        heartRateControlPointCharacteristic = variableService
-                .getCharacteristic(UUIDs.HEART_RATE_CONTROL_POINT_CHARACTERISTIC);
-        pause();
+            bluetoothGatt.setCharacteristicNotification(heartRateCharacteristic, true);
+            heartRateDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+            bluetoothGatt.writeDescriptor(heartRateDescriptor);
 
-        BluetoothGattService variableSensorService = bluetoothGatt.getService(UUIDs.SENSOR_SERVICE);
-        BluetoothGattCharacteristic heartCharacteristicSensor
-                = variableSensorService.getCharacteristic(UUIDs.CHARACTER_SENSOR_CHARACTERISTIC);
-        pause();
+            heartRateControlPointCharacteristic = variableService
+                    .getCharacteristic(UUIDs.HEART_RATE_CONTROL_POINT_CHARACTERISTIC);
+            pause();
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x02, 0x00});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            BluetoothGattService variableSensorService = bluetoothGatt.getService(UUIDs.SENSOR_SERVICE);
+            BluetoothGattCharacteristic heartCharacteristicSensor
+                    = variableSensorService.getCharacteristic(UUIDs.CHARACTER_SENSOR_CHARACTERISTIC);
+            pause();
+
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x02, 0x00});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x00});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x00});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
-        heartCharacteristicSensor.setValue(new byte[]{0x01, 0x03, 0x19});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartCharacteristicSensor.setValue(new byte[]{0x01, 0x03, 0x19});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x01, 0x00});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        pause();
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x01, 0x00});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            pause();
 
-        heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x01});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            heartRateControlPointCharacteristic.setValue(new byte[]{0x15, 0x01, 0x01});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
 
-        heartCharacteristicSensor.setValue(new byte[]{0x2});
-        bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
-        getHeartRate(successCallback);
+            heartCharacteristicSensor.setValue(new byte[]{0x2});
+            bluetoothGatt.writeCharacteristic(heartRateControlPointCharacteristic);
+            getHeartRate(successCallback);
+        }
+
     }
 
     @ReactMethod
