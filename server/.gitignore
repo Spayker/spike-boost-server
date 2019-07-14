@@ -7,3 +7,16 @@
 /build
 /captures
 .externalNativeBuild
+
+
+.idea
+*.iml
+auth-service/*.iml
+config/*.iml
+gateway-point/*.iml
+registry/*.iml
+auth-service/target
+config/target
+gateway-point/target
+registry/target
+monitoring/target
