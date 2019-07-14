@@ -1,12 +1,5 @@
 # SpikeBoost
 
-## Project status
-
-### Server build
-[![Build Status](https://travis-ci.com/Spayker/spike-boost.svg?token=jG3sXfQvSVtz8PKVCuMp&branch=master)](https://travis-ci.com/Spayker/spike-boost)
-
-### Android build
-
 ## Description
 SpikeBoost helps to solve the issue with annoying searching of best soundtrack in list.
 Especially when you take part in some physical activities and you have a choice to listen music simultaneously.
@@ -28,14 +21,12 @@ For server side:
 6) Mockito
 
 For client side:
-1) Java 8
-2) Android Min SDK: 21
-3) TensorFlow Lite
-4) Test Espresso
-5) Test Instrumentation
-6) FireBase API
-7) Google Fit
-8) rxandroidble
+1) React-Native
+2) Java 8
+3) Android Min SDK: 21
+4) TensorFlow Lite
+5) Test Espresso
+6) Test Instrumentation
 
 ## How to get started
 Please check each android and server fodlers for more info
