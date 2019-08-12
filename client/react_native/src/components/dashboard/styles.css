@@ -1,34 +1,26 @@
 .container {
     flex: 1;
     flex-direction: column;
-    margin: 5px;
+    align-content: center;
+    padding: 5%;
+    padding-top: 50%;
 }
 
 .package {
-    flex: 1;
     flex-direction: row;
-    justify-content: center;
     justify-content: space-between;
-    background-color: #F5FCFF;
-    margin: 5px;
+    margin: 10px;
 }
 
-.package_center{
-    flex: 1;
-    text-align: center;
-};
-
-.sensor_header {
-    font-size: 20;
-    text-align: left;
-}
-
-.sensor_value {
+.sensorField {
     font-size: 30;
 }
 
-.instructions {
-    text-align: center;
-    color: #333333;
-    margin-bottom: 5px;
+.buttonContainer {
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.spacing{
+    padding: 10px;
 }

@@ -26,8 +26,6 @@ export default class Dashboard extends React.Component {
                 this.getDeviceBondLevel
             });
         })
-        //toDo: remove after test is done
-        // this.postDataOnServer()
     }
 
     activateHeartRateCalculation = () => {
@@ -43,53 +41,23 @@ export default class Dashboard extends React.Component {
         })
     }
 
-    postDataOnServer = () => {
-        fetch('https://148.251.138.115:9652/endpoint', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                firstParam: 'yourValue',
-                secondParam: 'yourOtherValue',
-            }),
-        });
-    }
-
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.package}>
-                    <Text style={styles.sensor_value}>Heart Beat:</Text>
-                    <Text style={styles.sensor_value}>{this.state.heartBeatRate + ' Bpm'}</Text>
+                    <Text style={styles.sensorField}>Heart Beat:</Text>
+                    <Text style={styles.sensorField}>{this.state.heartBeatRate + ' Bpm'}</Text>
                 </View>
 
                 <View style={styles.package}>
-                    <Text style={styles.sensor_value}>Device BL:</Text>
-                    <Text style={styles.sensor_value}>{this.state.deviceBondLevel}</Text>
+                    <Text style={styles.sensorField}>Device BL:</Text>
+                    <Text style={styles.sensorField}>{this.state.deviceBondLevel}</Text>
                 </View>
 
-                <View style={styles.package}>
-                    <Text style={styles.sensor_value}>Speed:</Text>
-                    <Text style={styles.sensor_value}>0 Km/H</Text>
-                </View>
-
-                <View style={styles.package}>
-                    <Text style={styles.sensor_value}>Distance:</Text>
-                    <Text style={styles.sensor_value}>0 Km</Text>
-                </View>
-
-                <View style={styles.package_center}>
-                {
+                <View style={styles.buttonContainer}>
                     <Button onPress={this.searchBluetoothDevices} title='Link With MiBand' /> 
-                }
-                </View>
-
-                <View style={styles.package_center}>
-                {
+                    <View style={styles.spacing}/>
                     <Button onPress={this.activateHeartRateCalculation} title='Get Heart Rate' /> 
-                }
                 </View>
             </View>
         );
