@@ -24,7 +24,6 @@ import com.spikeboost.metric.HeartBeatMeasurer;
 import java.util.ArrayList;
 
 import static android.content.Context.BLUETOOTH_SERVICE;
-import static com.spikeboost.MainActivity.getMainContext;
 import static com.spikeboost.common.ModuleStorage.getModuleStorage;
 
 public class DeviceConnector  extends ReactContextBaseJavaModule {
@@ -47,7 +46,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
 
     DeviceConnector(ReactApplicationContext reactContext) {
         super(reactContext);
-        sharedPreferences = getMainContext()
+        sharedPreferences = getReactApplicationContext()
                 .getSharedPreferences(sharedPreferencesAppName, Context.MODE_PRIVATE);
         heartBeatMeasurer = getModuleStorage().getHeartBeatMeasurerPackage().getHeartBeatMeasurer();
         miBandGattCallBack = new AppBluetoothGattCallback(sharedPreferences, heartBeatMeasurer);
@@ -55,7 +54,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void enableBTAndDiscover(Callback successCallback) {
-        Context mainContext = getMainContext();
+        Context mainContext = getReactApplicationContext();
         final BluetoothAdapter bluetoothAdapter = ((BluetoothManager) mainContext.getSystemService(BLUETOOTH_SERVICE)).getAdapter();
 
         final ProgressDialog searchProgress = new ProgressDialog(mainContext);
@@ -119,7 +118,7 @@ public class DeviceConnector  extends ReactContextBaseJavaModule {
             miBand.createBond();
             Log.d("Bond", "Created with Device");
         }
-        Context mainContext = getMainContext();
+        Context mainContext = getReactApplicationContext();
         bluetoothGatt = miBand.connectGatt(mainContext, true, miBandGattCallBack);
         getModuleStorage().getHeartBeatMeasurerPackage().getHeartBeatMeasurer().updateBluetoothConfig(bluetoothGatt);
         miBandGattCallBack.updateBluetoothGatt(bluetoothGatt);

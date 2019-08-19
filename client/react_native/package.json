@@ -12,7 +12,7 @@
     "cypress": "^3.3.1",
     "haversine": "^1.1.1",
     "react": "16.8.3",
-    "react-native": "^0.59.9",
+    "react-native": "^0.60.4",
     "react-native-css-transformer": "^1.2.4",
     "react-native-device-info": "^2.2.2",
     "react-native-geolocation-service": "^2.0.1",
