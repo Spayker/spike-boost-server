@@ -22,6 +22,9 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const xOffset = new Animated.Value(0);
 
+// command below removes yellow box with warnings. Used for developement purposes only
+console.disableYellowBox = true;
+
 const Screen = props => {
   return (
     <View style={styles.scrollPage}>

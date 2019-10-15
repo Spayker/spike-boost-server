@@ -9,6 +9,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
@@ -16,13 +17,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -241,11 +243,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        bluetoothAdapter.getBluetoothLeScanner().startScan(leDeviceScanCallback);
-        new Handler().postDelayed(() -> {
-            bluetoothAdapter.getBluetoothLeScanner().stopScan(leDeviceScanCallback);
-            searchProgress.dismiss();
-        }, 120000);
+        BluetoothLeScanner bluetoothScanner = bluetoothAdapter.getBluetoothLeScanner();
+        if(bluetoothScanner != null){
+            bluetoothAdapter.getBluetoothLeScanner().startScan(leDeviceScanCallback);
+            new Handler().postDelayed(() -> {
+                bluetoothAdapter.getBluetoothLeScanner().stopScan(leDeviceScanCallback);
+                searchProgress.dismiss();
+            }, 120000);
+        }
     }
 
     private void connectDevice(BluetoothDevice miBand) {
