@@ -10,7 +10,7 @@ db.accounts.update(
         "_id": "demo",
         "lastSeen": new Date(),
         "note": "demo note",
-        "data": [],
+        "data": []
     },
     { upsert: true }
 );
