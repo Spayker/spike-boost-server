@@ -20,3 +20,5 @@ config/target
 gateway-point/target
 registry/target
 monitoring/target
+account-service/target
+account-service/target/*
