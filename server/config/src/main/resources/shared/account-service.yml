@@ -19,4 +19,4 @@ spring:
 server:
   servlet:
     context-path: /accounts
-  port: 6000
+  port: ${ACCOUNT_SERVICE_DEV_PORT}
