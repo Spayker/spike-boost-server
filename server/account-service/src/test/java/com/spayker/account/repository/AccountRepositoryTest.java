@@ -25,16 +25,12 @@ public class AccountRepositoryTest {
 
 		Account found = repository.findByName(stub.getName());
 		assertEquals(stub.getLastSeen(), found.getLastSeen());
-		assertEquals(stub.getNote(), found.getNote());
 	}
 
 	private Account getStubAccount() {
-
-		Account account = new Account();
-		account.setName("test");
-		account.setNote("test note");
-		account.setLastSeen(new Date());
-
-		return account;
+		return Account.builder()
+				.name("test")
+				.lastSeen(new Date())
+				.build();
 	}
 }
