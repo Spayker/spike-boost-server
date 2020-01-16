@@ -7,8 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import Dashboard from './components/dashboard/index.js';
-import Map from './components/map/index.js';
+import Dashboard from './components/dashboard/dashboard.jsx';
+import Map from './components/map/map.jsx';
 
 import {
   Animated,
