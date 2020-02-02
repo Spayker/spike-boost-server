@@ -75,7 +75,6 @@ const transitionAnimation = index => {
   };
 };
 
-//<Dashboard/>
 export default class App extends Component {
   render() {
     return (
