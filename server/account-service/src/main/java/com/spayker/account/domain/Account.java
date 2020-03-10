@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 @Document(collection = "accounts")
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
