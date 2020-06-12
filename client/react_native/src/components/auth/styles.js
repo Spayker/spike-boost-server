@@ -22,7 +22,7 @@ export default styles = StyleSheet.create({
     loginButton: {
         marginTop: 10,
         height: 65,
-        backgroundColor: "#158A15",
+        backgroundColor: "#EC5805",
         borderRadius:30,
         alignItems: 'center'
     },
@@ -65,7 +65,7 @@ export default styles = StyleSheet.create({
     },
 
     link:{
-        color: "#2AC940"
+        color: "#EC5805"
     },
 
     dataInputText:{

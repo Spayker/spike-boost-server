@@ -25,7 +25,7 @@ export default class SignInEmail extends React.Component {
 
           <Image style={styles.image} source={require('../../../../resources/sbp_logo.png')} />
           
-          <Text style={styles.textHeader}>B2G</Text>
+          <Text style={styles.textHeader}>SpikeBoost</Text>
 
           <View style={styles.container}>
 
