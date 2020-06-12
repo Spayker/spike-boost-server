@@ -7,12 +7,12 @@ const AppNavigator = createStackNavigator({
   //   screen: MainMenu,
   //   navigationOptions: { header: null }
   // },
-  SignUpEmail: {
-    screen: SignUpEmail,
-    navigationOptions: { header: null }
-  },
   SignInEmail: {
     screen: SignInEmail,
+    navigationOptions: { header: null }
+  },
+  SignUpEmail: {
+    screen: SignUpEmail,
     navigationOptions: { header: null }
   },
   initialRouteName: 'SignInEmail'
