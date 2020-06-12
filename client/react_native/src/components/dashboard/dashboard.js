@@ -1,6 +1,6 @@
 import React from 'react'
 import {Text, View, NativeModules, TouchableOpacity} from 'react-native';
-import styles from "./styles.jsx";
+import styles from "./styles";
 
 export default class Dashboard extends React.Component {
 
