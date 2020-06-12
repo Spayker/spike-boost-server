@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native'
-import StorageManager from '../../../common/storage/StorageManager'
+// import StorageManager from '../../../common/storage/StorageManager'
 import styles from "../../styles"
 
 export default class SignInEmail extends React.Component {
@@ -8,22 +8,22 @@ export default class SignInEmail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      storageManager: new StorageManager()    
+      //storageManager: new StorageManager()    
     }
     
   }
 
   componentDidMount = async () => { 
-    await this.state.storageManager.initDeviceData()
-    await this.state.storageManager.initServiceData()
-    await this.state.storageManager.initAccountData()
+    // await this.state.storageManager.initDeviceData()
+    // await this.state.storageManager.initServiceData()
+    // await this.state.storageManager.initAccountData()
   }
 
   render() {
     return (
         <View style={styles.imageBackground} >
 
-          <Image style={styles.image} source={require('../../../../resources/b2gm_logo.png')} />
+          {/* <Image style={styles.image} source={require('../../../../resources/b2gm_logo.png')} /> */}
           
           <Text style={styles.textHeader}>B2G</Text>
 

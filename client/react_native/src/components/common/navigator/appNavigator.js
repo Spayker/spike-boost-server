@@ -3,14 +3,10 @@ import SignInEmail from '../../auth/signIn/email/signInEmail'
 import SignUpEmail from '../../auth/signUp/email/signUpEmail'
 
 const AppNavigator = createStackNavigator({
-  MainMenu: {
-    screen: MainMenu,
-    navigationOptions: { header: null }
-  },
-  ServiceMenu: {
-    screen: ServiceMenu,
-    navigationOptions: { header: null }
-  },
+  // MainMenu: {
+  //   screen: MainMenu,
+  //   navigationOptions: { header: null }
+  // },
   SignInEmail: {
     screen: SignInEmail,
     navigationOptions: { header: null }
