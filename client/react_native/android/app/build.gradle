@@ -179,6 +179,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-vector-icons')
+    implementation project(':@react-native-community_async-storage')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:0.61.2"  // From node_modules
     implementation 'org.apache.commons:commons-lang3:3.6'
