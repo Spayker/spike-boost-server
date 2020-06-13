@@ -8,10 +8,17 @@ export default styles = StyleSheet.create({
         backgroundColor: "white"
     },
 
-    powerButton: { 
+    secondaryButton: {
         position: 'absolute',                                          
-        bottom: 10,                                                    
-        right: 10, 
+        top: 25,                                                    
+        right: 10,
+        width: 64,
+        height: 64,
+        borderRadius: 50,
+        backgroundColor: 'white',
+        elevation: 4,
+        justifyContent: 'center',
+        alignItems: 'baseline'
     },
 
     powerButtonWithPopup: { 
@@ -21,8 +28,12 @@ export default styles = StyleSheet.create({
     },
 
     powerButtonIcon: {
-        height: 75,
-        width: 75
+        alignSelf: 'center',
+        color: '#EC5805',
+    },
+
+    navigationCurrentIcon: {
+        color: '#EC5805',
     },
 
     powerLevelImage:{

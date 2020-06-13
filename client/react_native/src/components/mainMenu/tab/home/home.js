@@ -3,6 +3,7 @@ import {View, Dimensions, TouchableOpacity, Image, Alert, Text, PermissionsAndro
 import globals from '../../../common/globals'
 import MapView, { Marker } from "react-native-maps"
 import Geolocation from 'react-native-geolocation-service'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import * as Progress from 'react-native-progress'
 import styles from "./styles"
 
@@ -111,7 +112,8 @@ export default class Home extends React.Component {
                                             }
                                         }
                                         onPress = { () => this.setState({ isPopup: !this.state.isPopup }) }>
-                                        <Image source={require('../../../../resources/on.png')} style={{height: 20, width: 20 }} />
+                                            <Icon name={'circle'} size={24} style={styles.navigationCurrentIcon}/> 
+                                        
         
                                         </Marker>
                             }
@@ -121,7 +123,7 @@ export default class Home extends React.Component {
                         {this.state.isPopup ? (
                                 <View>
                                     <TouchableOpacity style={ styles.powerButtonWithPopup } onPress={ () => this.deactivateDevice() }> 
-                                        {/* <Image style={styles.powerButtonIcon} source={require('../../../resources/ic_power_off.png')} />  */}
+                                        <Icon name={'play'} size={24} style={styles.powerButtonIcon} /> 
                                     </TouchableOpacity>
 
                                     <View style={ styles.popupContainer }>
@@ -144,8 +146,8 @@ export default class Home extends React.Component {
                                     </View>
                                 </View>
                             ) : (
-                                <TouchableOpacity style={styles.powerButton} onPress={ () => this.deactivateDevice()}> 
-                                    {/* <Image style={styles.powerButtonIcon} source={require('../../../resources/ic_power_off.png')}  />  */}
+                                <TouchableOpacity style={styles.secondaryButton} onPress={ () => this.deactivateDevice()}>
+                                    <Icon name={'play'} size={24} style={styles.powerButtonIcon} /> 
                                 </TouchableOpacity>
                             )
                         }
