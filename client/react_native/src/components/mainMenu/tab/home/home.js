@@ -1,23 +1,173 @@
 import React from 'react'
-import { FlatList, View, Image, Text, TouchableOpacity} from 'react-native'
-import styles from "./styles";
+import {View, Dimensions, TouchableOpacity, Image, Alert, Text, PermissionsAndroid, AsyncStorage} from 'react-native'
+import globals from '../../../common/globals'
+import MapView, { Marker } from "react-native-maps"
+import Geolocation from 'react-native-geolocation-service'
+import * as Progress from 'react-native-progress'
+import styles from "./styles"
+
+const {width, height} = Dimensions.get('window')
+
+const ASPECT_RATIO = width / height
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 export default class Home extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            
+            marginBottom: 1,
+            isMapReady: false,
+            isPopup: false,
+            shallShowDeviceMarker: 'true',
+            initialRegion: {
+                latitude: 0,
+                longitude: 0,
+                latitudeDelta: 0,
+                longitudeDelta: 0,
+            }
         }
     }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                
-                
-            </View>
+    onMapLayout = () => { this.setState({ isMapReady: true }) }
+
+    deactivateDevice = () => {
+        Alert.alert(
+            'Turn off Volme device?',
+            'when you turn off your device, you will no longer be protected',
+            [
+                {
+                  text: 'NO, THANKS',
+                  onPress: async () => {
+                    try { 
+                        await AsyncStorage.setItem(globals.SHALL_SHOW_DEVICE_MARKER_KEY, 'true')
+                        this.setState({ shallShowDeviceMarker: 'true' })
+                    } catch (error) { console.error('location.jsx [deactivateDevice]: couldn\'t deactivate device - ' + error) }
+                }},
+              {text: 'YES', onPress: async () => {
+                try {
+                    await AsyncStorage.setItem(globals.SHALL_SHOW_DEVICE_MARKER_KEY, 'false')
+                    this.setState({ shallShowDeviceMarker: 'false' })
+                    this.props.navigation.navigate('ActivateDevice')
+                } catch (error) { console.error('location.jsx [deactivateDevice]: couldn\'t deactivate device - ' + error) }}},
+            ],
+            {cancelable: false},
         );
     }
 
+    componentDidMount = async () => {
+        try {
+            //this.setState({ shallShowDeviceMarker: await AsyncStorage.getItem(globals.SHALL_SHOW_DEVICE_MARKER_KEY) })
+            await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+            ).then(granted => { 
+                console.debug('location.jsx [renderScreen]: location permission granted: ' + granted)
+            });
+            await Geolocation.getCurrentPosition(
+                (position) => {
+                    console.debug(position);
+                    var lat = parseFloat(position.coords.latitude)
+                    var long = parseFloat(position.coords.longitude)
+
+                    var initialRegion = {
+                        latitude: lat,
+                        longitude: long,
+                        latitudeDelta: LATITUDE_DELTA,
+                        longitudeDelta: LONGITUDE_DELTA,
+                    }
+                    this.setState({initialRegion: initialRegion})
+                    this.mapView.animateToRegion(initialRegion,2000)
+                },
+                (error) => { console.debug('location.jsx [componentDidMount]:' + error.message) },
+                { enableHighAccuracy: true, timeout: 30000, maximumAge: 3600000 }
+            );
+        } catch (error) { console.error("location.jsx [componentDidMount]: error has occured. " + error) }
+    }
+    
+    renderScreen = () => {
+            return (
+                    <View style={styles.container}>    
+                        
+                        <MapView style={{flex: 1}}
+                            initialRegion={this.state.initialRegion}
+                            followUserLocation={true}
+                            showsMyLocationButton={false}
+                            showsCompass={false}
+                            moveOnMarkerPress={false}
+                            zoomEnabled={true}
+                            minZoomLevel={18}
+                            onLayout={this.onMapLayout}
+                            onPress={() => {if(this.state.isPopup) this.setState({ isPopup: !this.state.isPopup }) }  }
+                            ref={mapView => (this.mapView = mapView)}>
+
+                            { this.state.isMapReady && (this.state.shallShowDeviceMarker == 'true') &&
+                                        <Marker
+                                
+                                        coordinate={
+                                            {
+                                                latitude: this.state.initialRegion.latitude, 
+                                                longitude: this.state.initialRegion.longitude
+                                            }
+                                        }
+                                        onPress = { () => this.setState({ isPopup: !this.state.isPopup }) }>
+                                        <Image source={require('../../../../resources/on.png')} style={{height: 20, width: 20 }} />
+        
+                                        </Marker>
+                            }
+
+                        </MapView>
+
+                        {this.state.isPopup ? (
+                                <View>
+                                    <TouchableOpacity style={ styles.powerButtonWithPopup } onPress={ () => this.deactivateDevice() }> 
+                                        {/* <Image style={styles.powerButtonIcon} source={require('../../../resources/ic_power_off.png')} />  */}
+                                    </TouchableOpacity>
+
+                                    <View style={ styles.popupContainer }>
+                                        <View style={ styles.leftPopupContainer }>
+                                            <Text style={styles.popupContainerItemHeader}>My device</Text>
+                                            <Text style={styles.popupContainerItemCoordinates}>{
+                                                this.state.initialRegion.latitude 
+                                                + ', ' 
+                                                + this.state.initialRegion.longitude}
+                                            </Text>
+                                        </View>
+
+                                        <View style={ styles.rightPopupContainer }>
+                                            <Text style={styles.popupContainerItemHeader}>Device battery life</Text>
+                                            <View style={ styles.popupPowerLevelRow }>
+                                                {/* <Image style={styles.powerLevelImage} source={require('../../../resources/full.png')}  /> */}
+                                                <Text style={styles.popupContainerItemBatteryGreenLevel}>100%</Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+                            ) : (
+                                <TouchableOpacity style={styles.powerButton} onPress={ () => this.deactivateDevice()}> 
+                                    {/* <Image style={styles.powerButtonIcon} source={require('../../../resources/ic_power_off.png')}  />  */}
+                                </TouchableOpacity>
+                            )
+                        }
+                    </View>
+            );
+    }
+      
+    render() {
+        //const showDeviceMarker = this.props.navigation.getParam('shallShowDeviceMarker', 'false')
+        //if(showDeviceMarker == 'true' && this.state.shallShowDeviceMarker == 'false'){
+        //    this.setState({ shallShowDeviceMarker: showDeviceMarker})
+        //}
+
+        // console.debug('location.jsx [render]: rendering location screen. current latitude - ' + this.state.initialRegion.latitude)
+        // if(this.state.initialRegion.latitude !== 0) {
+            return ( this.renderScreen() );
+        // } else {
+        //     return ( 
+        //         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        //             <Progress.CircleSnail size={40} indeterminate={true} />
+        //         </View>
+        //     );
+        // }
+    }
 }

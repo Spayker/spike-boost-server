@@ -2,58 +2,88 @@ import { StyleSheet } from 'react-native';
 
 export default styles = StyleSheet.create({
 
-    container:{
+    container: {
         flex: 1,
         justifyContent: "center",
-        backgroundColor: "#060403",
-        padding: 15,
+        backgroundColor: "white"
     },
 
-    contentTextDescription:{
-        textAlign: "center",
-        marginTop: 16,
-        color: "#9e9e9e",
-        fontSize: 16
+    powerButton: { 
+        position: 'absolute',                                          
+        bottom: 10,                                                    
+        right: 10, 
     },
 
-    image:{
-        alignSelf: "center",
+    powerButtonWithPopup: { 
+        position: 'absolute',                                          
+        bottom: 80,                                                    
+        right: 10, 
     },
 
-    listTrainingContainer: {
-        flex: 1,
-        flexDirection: "row",
-        alignItems: 'center',
+    powerButtonIcon: {
+        height: 75,
+        width: 75
+    },
+
+    powerLevelImage:{
+        height: 25,
+        width: 25
+    },
+
+    popupContent: {
+        backgroundColor: "white",
+        padding: 22,
+        borderRadius: 4,
+        borderColor: "black"
+    },
+
+    popupContainer: {
+        padding: 16,
         justifyContent: "space-between",
-        backgroundColor: '#333333',
-        borderRadius: 5,
-        padding: 10,
-        marginTop: 5
+        flexDirection: 'row',
     },
 
-    addTrainingButton: {
-        marginTop: 10,
-        height: 65,
-        backgroundColor: "#158A15",
-        borderRadius:30,
-        alignItems: 'center'
+    popupPowerLevelRow: {
+        justifyContent: "center",
+        flexDirection: 'row',
     },
 
-    discoverDevicesButtonText: {
-        color: "#FFFFFF",
-        height: 65,
-        fontSize: 16,
-        paddingTop: 20
+    leftPopupContainer: {
+        alignItems: "flex-start",
     },
 
-    listTrainingColumnData:{
-        alignSelf: "center",
-        flexDirection: "column",
+    rightPopupContainer: {
+        alignItems: "flex-end",
     },
 
-    item: {
-        fontSize: 18,
-        color: "white",
-    }
+    popupContainerItem: {
+        paddingTop: 8,
+    },
 
+    popupContainerItemHeader: {
+        paddingTop: 8,
+        fontSize: 14,
+        fontWeight: "bold"
+    },
+
+    popupContainerItemCoordinates: {
+        paddingTop: 8,
+        color: "#9e9e9e"
+    },
+
+    popupContainerItemBatteryRedLevel: {
+        paddingTop: 8,
+        color: "#f44336"
+    },
+
+    popupContainerItemBatteryYellowLevel: {
+        paddingTop: 8,
+        color: "#fdcc01"
+    },
+
+    popupContainerItemBatteryGreenLevel: {
+        paddingTop: 8,
+        color: "#34da8d"
+    },
+    
 });
