@@ -1,8 +1,9 @@
 import React from 'react'
-import {View, Dimensions, TouchableOpacity, Image, Alert, Text, PermissionsAndroid, AsyncStorage} from 'react-native'
+import {View, Dimensions, TouchableOpacity, Alert, Text, PermissionsAndroid, AsyncStorage} from 'react-native'
 import globals from '../../../common/globals'
 import MapView, { Marker } from "react-native-maps"
 import Geolocation from 'react-native-geolocation-service'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import * as Progress from 'react-native-progress'
 import styles from "./styles"
 
@@ -20,6 +21,8 @@ export default class Home extends React.Component {
             marginBottom: 1,
             isMapReady: false,
             isPopup: false,
+            isMediaStarted: false,
+            isTrainingStarted: false,
             shallShowDeviceMarker: 'true',
             initialRegion: {
                 latitude: 0,
@@ -32,28 +35,19 @@ export default class Home extends React.Component {
 
     onMapLayout = () => { this.setState({ isMapReady: true }) }
 
-    deactivateDevice = () => {
-        Alert.alert(
-            'Turn off Volme device?',
-            'when you turn off your device, you will no longer be protected',
-            [
-                {
-                  text: 'NO, THANKS',
-                  onPress: async () => {
-                    try { 
-                        await AsyncStorage.setItem(globals.SHALL_SHOW_DEVICE_MARKER_KEY, 'true')
-                        this.setState({ shallShowDeviceMarker: 'true' })
-                    } catch (error) { console.error('location.jsx [deactivateDevice]: couldn\'t deactivate device - ' + error) }
-                }},
-              {text: 'YES', onPress: async () => {
-                try {
-                    await AsyncStorage.setItem(globals.SHALL_SHOW_DEVICE_MARKER_KEY, 'false')
-                    this.setState({ shallShowDeviceMarker: 'false' })
-                    this.props.navigation.navigate('ActivateDevice')
-                } catch (error) { console.error('location.jsx [deactivateDevice]: couldn\'t deactivate device - ' + error) }}},
-            ],
-            {cancelable: false},
-        );
+    startMedia = () => {  this.setState({isMediaStarted: true}) }
+
+    stopMedia = () => { this.setState({isMediaStarted: false}) }
+
+    startTraining = () => {  
+        this.setState({isTrainingStarted: true})
+        this.setState({isPopup: true})
+         
+    }
+
+    stopTraining = () => { 
+        this.setState({isTrainingStarted: false}) 
+        this.setState({isPopup: false}) 
     }
 
     componentDidMount = async () => {
@@ -62,7 +56,7 @@ export default class Home extends React.Component {
             await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
             ).then(granted => { 
-                console.debug('location.jsx [renderScreen]: location permission granted: ' + granted)
+                console.debug('home.js [componentDidMount]: location permission granted: ' + granted)
             });
             await Geolocation.getCurrentPosition(
                 (position) => {
@@ -79,10 +73,10 @@ export default class Home extends React.Component {
                     this.setState({initialRegion: initialRegion})
                     this.mapView.animateToRegion(initialRegion,2000)
                 },
-                (error) => { console.debug('location.jsx [componentDidMount]:' + error.message) },
+                (error) => { console.debug('home.js [componentDidMount]:' + error.message) },
                 { enableHighAccuracy: true, timeout: 30000, maximumAge: 3600000 }
             );
-        } catch (error) { console.error("location.jsx [componentDidMount]: error has occured. " + error) }
+        } catch (error) { console.error("home.js [componentDidMount]: error has occured. " + error) }
     }
     
     renderScreen = () => {
@@ -101,28 +95,49 @@ export default class Home extends React.Component {
                             onPress={() => {if(this.state.isPopup) this.setState({ isPopup: !this.state.isPopup }) }  }
                             ref={mapView => (this.mapView = mapView)}>
 
-                            { this.state.isMapReady && (this.state.shallShowDeviceMarker == 'true') &&
-                                        <Marker
-                                
-                                        coordinate={
+                            { 
+                                this.state.isMapReady && (this.state.shallShowDeviceMarker == 'true') &&
+                                    <Marker coordinate={
                                             {
                                                 latitude: this.state.initialRegion.latitude, 
                                                 longitude: this.state.initialRegion.longitude
                                             }
                                         }
                                         onPress = { () => this.setState({ isPopup: !this.state.isPopup }) }>
-                                        <Image source={require('../../../../resources/on.png')} style={{height: 20, width: 20 }} />
-        
-                                        </Marker>
+                                        <Icon name={'circle'} size={24} style={styles.navigationCurrentIcon}/>
+                                    </Marker>
                             }
 
                         </MapView>
 
-                        {this.state.isPopup ? (
+                        {
+                            this.state.isMediaStarted ? (
+                                <TouchableOpacity style={ styles.mediaButton } onPress={ () => this.stopMedia() }> 
+                                    <Icon name={'stop'} size={24} style={styles.mediaButtonIcon} /> 
+                                </TouchableOpacity>
+                            ) : (
+                                <TouchableOpacity style={ styles.mediaButton } onPress={ () => this.startMedia() }> 
+                                    <Icon name={'play'} size={24} style={styles.mediaButtonIcon} /> 
+                                </TouchableOpacity>
+                            )
+                        }
+
+                        {
+                            this.state.isPopup ? (
                                 <View>
-                                    <TouchableOpacity style={ styles.powerButtonWithPopup } onPress={ () => this.deactivateDevice() }> 
-                                        {/* <Image style={styles.powerButtonIcon} source={require('../../../resources/ic_power_off.png')} />  */}
-                                    </TouchableOpacity>
+                                    
+
+                                    {
+                                        this.state.isTrainingStarted ? (
+                                            <TouchableOpacity style={ styles.secondaryFunctionPopupButton } onPress={ () => this.stopTraining() }> 
+                                                <Icon name={'stop'} size={24} style={styles.secondaryFunctionButtonIcon} /> 
+                                            </TouchableOpacity>
+                                        ) : (
+                                            <TouchableOpacity style={ styles.secondaryFunctionPopupButton } onPress={ () => this.startTraining() }> 
+                                                <Icon name={'play'} size={24} style={styles.secondaryFunctionButtonIcon} /> 
+                                            </TouchableOpacity>
+                                        )
+                                    }
 
                                     <View style={ styles.popupContainer }>
                                         <View style={ styles.leftPopupContainer }>
@@ -137,16 +152,31 @@ export default class Home extends React.Component {
                                         <View style={ styles.rightPopupContainer }>
                                             <Text style={styles.popupContainerItemHeader}>Device battery life</Text>
                                             <View style={ styles.popupPowerLevelRow }>
-                                                {/* <Image style={styles.powerLevelImage} source={require('../../../resources/full.png')}  /> */}
                                                 <Text style={styles.popupContainerItemBatteryGreenLevel}>100%</Text>
                                             </View>
                                         </View>
                                     </View>
                                 </View>
                             ) : (
-                                <TouchableOpacity style={styles.powerButton} onPress={ () => this.deactivateDevice()}> 
-                                    {/* <Image style={styles.powerButtonIcon} source={require('../../../resources/ic_power_off.png')}  />  */}
-                                </TouchableOpacity>
+
+                                    
+                                
+                                this.state.isTrainingStarted ? (
+                                    <TouchableOpacity style={ styles.secondaryFunctionButton } onPress={ () => this.stopTraining() }> 
+                                        <Icon name={'flag-checkered'} size={24} style={styles.secondaryFunctionButtonIcon} /> 
+                                    </TouchableOpacity>
+                                ) : (
+                                    <TouchableOpacity style={ styles.secondaryFunctionButton } onPress={ () => this.startTraining() }> 
+                                        <Icon name={'running'} size={24} style={styles.secondaryFunctionButtonIcon} /> 
+                                    </TouchableOpacity>
+                                )
+                                
+                                    
+                                    
+
+                                
+
+                                
                             )
                         }
                     </View>
@@ -159,7 +189,7 @@ export default class Home extends React.Component {
         //    this.setState({ shallShowDeviceMarker: showDeviceMarker})
         //}
 
-        // console.debug('location.jsx [render]: rendering location screen. current latitude - ' + this.state.initialRegion.latitude)
+        // console.debug('home.js [render]: rendering location screen. current latitude - ' + this.state.initialRegion.latitude)
         // if(this.state.initialRegion.latitude !== 0) {
             return ( this.renderScreen() );
         // } else {
