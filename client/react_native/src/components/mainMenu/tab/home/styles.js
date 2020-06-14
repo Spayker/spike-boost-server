@@ -8,7 +8,7 @@ export default styles = StyleSheet.create({
         backgroundColor: "white"
     },
 
-    secondaryButton: {
+    mediaButton: {
         position: 'absolute',                                          
         top: 25,                                                    
         right: 10,
@@ -21,18 +21,45 @@ export default styles = StyleSheet.create({
         alignItems: 'baseline'
     },
 
-    powerButtonWithPopup: { 
-        position: 'absolute',                                          
-        bottom: 80,                                                    
-        right: 10, 
+    mediaButtonIcon: {
+        alignSelf: 'center',
+        color: '#EC5805',
     },
 
-    powerButtonIcon: {
+    secondaryFunctionButton: {
+        position: 'absolute',                                          
+        bottom: 25,                                                    
+        right: 10,
+        width: 64,
+        height: 64,
+        borderRadius: 50,
+        backgroundColor: 'white',
+        elevation: 4,
+        justifyContent: 'center',
+        alignItems: 'baseline'
+    },
+    
+    secondaryFunctionPopupButton: {
+        position: 'absolute',                                          
+        bottom: 100,                                                    
+        right: 10,
+        width: 64,
+        height: 64,
+        borderRadius: 50,
+        backgroundColor: 'white',
+        elevation: 4,
+        justifyContent: 'center',
+        alignItems: 'baseline'
+    },
+
+    secondaryFunctionButtonIcon: {
         alignSelf: 'center',
         color: '#EC5805',
     },
 
     navigationCurrentIcon: {
+        borderRadius: 50,
+        backgroundColor: '#EC5805',
         color: '#EC5805',
     },
 
