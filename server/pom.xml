@@ -44,7 +44,6 @@
         <module>gateway-point</module>
         <module>auth-service</module>
         <module>account-service</module>
-        <module>device-service</module>
     </modules>
 
 </project>
