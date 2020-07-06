@@ -1,16 +1,23 @@
-# SpikeBoost
+# SpikeBoost Server Part
+
+Project stays in the active phase of development. 
 
 ## Description
-SpikeBoost helps to solve the issue with annoying searching of best soundtrack from your list.
-Especially when you take part in some physical activities and there are no options to listen music simultaneously.
+Server part offers following features:
+1) user authorization
+2) storing of training tracks on cloud side
+3) get new audio tracks
+4) sharing workout results with preferable music 
 
-The project has proof of concept state now. It has few parts:
-1) server side (handle basic set of requests from users)
-2) client side (mobile platforms such as Android, IoS)
-3) machine learning (located on server and client sides)
+## Technical Stack
+1) Java 11
+2) Spring Boot: 2.1.4.RELEASE
+3) Spring Cloud: Greenwich.SR4
+4) Junit 5
+5) Mockito
+6) Docker-Compose: 3.7
 
-## How to get started
-Each project's part has correspond README file to start working/testing available functionality.
-
-## License
-MIT
+## How To Run
+1) In Project root folder: mvn clean install
+2) Run docker-compose, docker-compose-dev scripts: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+3) Wait until all services are run 
