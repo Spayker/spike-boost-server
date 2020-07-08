@@ -1,3 +1,5 @@
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Spayker/spike-boost-server/blob/master/LICENSE)
+
 # SpikeBoost Server Part
 
 Project helps to automate process of music selection while current active activity of user.
