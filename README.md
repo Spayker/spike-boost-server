@@ -38,3 +38,6 @@ All tests are rotating around working with rest-end points. Last ones can be div
 2) neural-network training end points
 
 A detailed scheme and examples of requests are not yet ready but will be prepared quite soon.
+
+## License
+MIT
