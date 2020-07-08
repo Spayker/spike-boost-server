@@ -6,6 +6,8 @@ Since first stage of development relates mostly to PoC, only basic functionality
 2) providing of trained neural-network to end-user
 3) upload of trained results to train next level of neural-network
 
+Trello board: https://trello.com/b/ay9yWtE9/sbp-server
+
 ## Description
 
 Soundtracks music will be kept locally on client side. Once a physical activity has been finished the server can receive
