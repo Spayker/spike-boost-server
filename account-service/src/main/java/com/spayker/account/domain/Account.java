@@ -12,6 +12,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *  Account model entity that contains major information about account.
+ *  ToDo: update docs once model will be updated
+ **/
 @Document(collection = "accounts")
 @Builder
 @NoArgsConstructor
