@@ -7,6 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
+/**
+ *  User entity model is used to keep login, password data for certain user registered in system.
+ *  It contains username (email), encoded password and nothing more.
+ **/
 @Document(collection = "users")
 public class User implements UserDetails {
 

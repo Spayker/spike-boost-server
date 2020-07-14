@@ -7,15 +7,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ *  Service layer for work user related data.
+ **/
 @Service
 public class MongoUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository repository;
 
+	/**
+	 *  Returns UserDetails object by its username.
+	 *  @param username - String value to perform search
+	 *  @return found UserDetails instance
+	 *  @throws UsernameNotFoundException if user details were not found
+	 **/
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
 		return repository.findById(username).orElseThrow(()->new UsernameNotFoundException(username));
 	}
 }
