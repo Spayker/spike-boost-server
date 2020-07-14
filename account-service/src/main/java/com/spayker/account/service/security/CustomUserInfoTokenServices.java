@@ -124,7 +124,7 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 
 		String clientId = (String) request.get("clientId");
 		Set<String> scope = new LinkedHashSet<>(request.containsKey("scope") ?
-				(Collection<String>) request.get("scope") : Collections.<String>emptySet());
+				(Collection<String>) request.get("scope") : Collections.emptySet());
 
 		return new OAuth2Request(null, clientId, null, true, new HashSet<>(scope),
 				null, null, null, null);
@@ -144,7 +144,7 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 	 *  Returns Map container that contains body information provided by a request in its body.
 	 *  @param path - String value to where current request has come
 	 *  @param accessToken - provided String value which represents token
-	 *  @return
+	 *  @return Map container with principal and request data inside
 	 **/
 	@SuppressWarnings({ "unchecked" })
 	private Map<String, Object> getMap(String path, String accessToken) {
