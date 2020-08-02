@@ -21,11 +21,22 @@ import java.util.List;
 @Data
 public class Account {
 
-	@Id
+
 	private String name;
 
-	private Date lastSeen;
+	@Id
+	private String email;
 
-	private List<String> deviceIds;
+	private Date createdDate;
+
+	private Date modifiedDate;
+
+	private int age;
+
+	private Gender gender;
+
+	private int weight;
+
+	private int height;
 
 }
