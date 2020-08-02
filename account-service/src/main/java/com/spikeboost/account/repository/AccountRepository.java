@@ -1,6 +1,6 @@
-package com.spayker.account.repository;
+package com.spikeboost.account.repository;
 
-import com.spayker.account.domain.Account;
+import com.spikeboost.account.domain.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

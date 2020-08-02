@@ -1,8 +1,8 @@
-package com.spayker.account.controller;
+package com.spikeboost.account.controller;
 
-import com.spayker.account.domain.Account;
-import com.spayker.account.domain.User;
-import com.spayker.account.service.AccountService;
+import com.spikeboost.account.domain.Account;
+import com.spikeboost.account.domain.User;
+import com.spikeboost.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package com.spayker.account.service.security;
+package com.spikeboost.account.service.security;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,6 +1,6 @@
-package com.spayker.account.client;
+package com.spikeboost.account.client;
 
-import com.spayker.account.domain.User;
+import com.spikeboost.account.domain.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

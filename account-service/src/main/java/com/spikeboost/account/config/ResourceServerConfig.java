@@ -1,6 +1,6 @@
-package com.spayker.account.config;
+package com.spikeboost.account.config;
 
-import com.spayker.account.service.security.CustomUserInfoTokenServices;
+import com.spikeboost.account.service.security.CustomUserInfoTokenServices;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;

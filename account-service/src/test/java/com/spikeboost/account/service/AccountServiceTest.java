@@ -1,10 +1,10 @@
-package com.spayker.account.service;
+package com.spikeboost.account.service;
 
-import com.spayker.account.client.AuthServiceClient;
-import com.spayker.account.domain.Account;
-import com.spayker.account.domain.User;
-import com.spayker.account.exception.AccountException;
-import com.spayker.account.repository.AccountRepository;
+import com.spikeboost.account.client.AuthServiceClient;
+import com.spikeboost.account.domain.Account;
+import com.spikeboost.account.domain.User;
+import com.spikeboost.account.exception.AccountException;
+import com.spikeboost.account.repository.AccountRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

@@ -1,7 +1,7 @@
-package com.spayker.account.service;
+package com.spikeboost.account.service;
 
-import com.spayker.account.domain.Account;
-import com.spayker.account.domain.User;
+import com.spikeboost.account.domain.Account;
+import com.spikeboost.account.domain.User;
 
 /**
  *  Service layer interface to provided API for work with Account entity.

@@ -1,4 +1,4 @@
-package com.spayker.account.domain;
+package com.spikeboost.account.domain;
 
 import org.hibernate.validator.constraints.Length;
 

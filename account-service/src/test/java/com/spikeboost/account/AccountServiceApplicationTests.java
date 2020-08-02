@@ -1,4 +1,4 @@
-package com.spayker.account;
+package com.spikeboost.account;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

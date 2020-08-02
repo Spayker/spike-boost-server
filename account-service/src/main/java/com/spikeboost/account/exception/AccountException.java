@@ -1,4 +1,4 @@
-package com.spayker.account.exception;
+package com.spikeboost.account.exception;
 
 /**
  *  A custom exception class that works with service layer of current micro-service.

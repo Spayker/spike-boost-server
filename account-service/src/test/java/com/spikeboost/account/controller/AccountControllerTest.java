@@ -1,8 +1,8 @@
-package com.spayker.account.controller;
+package com.spikeboost.account.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spayker.account.domain.User;
-import com.spayker.account.service.AccountService;
+import com.spikeboost.account.domain.User;
+import com.spikeboost.account.service.AccountService;
 import com.sun.security.auth.UserPrincipal;
 import org.junit.Before;
 import org.junit.Test;

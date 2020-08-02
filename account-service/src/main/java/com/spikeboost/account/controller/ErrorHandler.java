@@ -1,4 +1,4 @@
-package com.spayker.account.controller;
+package com.spikeboost.account.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
