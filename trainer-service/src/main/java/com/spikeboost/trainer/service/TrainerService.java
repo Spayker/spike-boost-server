@@ -6,5 +6,7 @@ package com.spikeboost.trainer.service;
  **/
 public interface TrainerService {
 
+    String UTF_ENCODING_TYPE = "UTF-8";
+
 
 }

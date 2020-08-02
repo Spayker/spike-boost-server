@@ -1,0 +1,5 @@
+com/spikeboost/trainer/TrainerApplication.class
+com/spikeboost/trainer/service/TrainerServiceImpl.class
+com/spikeboost/trainer/service/TrainerService.class
+com/spikeboost/trainer/controller/ErrorHandler.class
+com/spikeboost/trainer/controller/TrainerController.class
