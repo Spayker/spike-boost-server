@@ -23,15 +23,18 @@
 hs_err_pid*
 
 .idea
+.run
 *.iml
 auth-service/*.iml
 config/*.iml
 gateway-point/*.iml
 registry/*.iml
 account-service/*.iml
+trainer-service/*.iml
 auth-service/target
 config/target
 gateway-point/target
 registry/target
 account-service/target
+trainer-service/target
 device-service/target
