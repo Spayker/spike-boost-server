@@ -43,6 +43,19 @@ services:
     ports:
       - $ACCOUNT_MONGODB_EXTERNAL_DEV_PORT:$MONGODB_SERVICE_INTERNAL_DEV_PORT
 
+  trainer-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS}${TRAINER_SERVICE_DEV_DEBUG_PORT}
+    build: trainer-service
+    ports:
+      - $TRAINER_SERVICE_DEV_PORT:$TRAINER_SERVICE_DEV_PORT
+      - $TRAINER_SERVICE_DEV_DEBUG_PORT:$TRAINER_SERVICE_DEV_DEBUG_PORT
+
+  trainer-mongodb:
+    build: mongodb
+    ports:
+      - $TRAINER_MONGODB_EXTERNAL_DEV_PORT:$MONGODB_SERVICE_INTERNAL_DEV_PORT
+
   registry:
     environment:
       JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS}${REGISTRY_SERVICE_DEV_DEBUG_PORT}
