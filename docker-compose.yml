@@ -103,6 +103,36 @@ services:
         max-size: "10m"
         max-file: "10"
 
+  trainer-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD:              $CONFIG_SERVICE_PASSWORD
+      CONFIG_SERVICE_DEV_PORT:              $CONFIG_SERVICE_DEV_PORT
+      ACCOUNT_SERVICE_PASSWORD:             $TRAINER_SERVICE_PASSWORD
+      MONGODB_PASSWORD:                     $MONGODB_PASSWORD
+      ACCOUNT_SERVICE_DEV_PORT:             $TRAINER_SERVICE_DEV_PORT
+      AUTH_SERVICE_DEV_PORT:                $AUTH_SERVICE_DEV_PORT
+      MONGODB_SERVICE_INTERNAL_DEV_PORT:    $MONGODB_SERVICE_INTERNAL_DEV_PORT
+      REGISTRY_SERVICE_DEV_PORT:            $REGISTRY_SERVICE_DEV_PORT
+    image: mservicet-trainer-service
+    restart: always
+    depends_on:
+      - config
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+    trainer-mongodb:
+      environment:
+        INIT_DUMP: trainer-service-dump.js
+        MONGODB_PASSWORD: $MONGODB_PASSWORD
+      image: mservicet-mongodb
+      restart: always
+      logging:
+        options:
+          max-size: "10m"
+          max-file: "10"
+
   rabbitmq:
     image: rabbitmq:3-management
     restart: always
