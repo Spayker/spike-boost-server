@@ -65,7 +65,8 @@ services:
 
   auth-mongodb:
     environment:
-      MONGODB_PASSWORD: $MONGODB_PASSWORD
+      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
     image: mservicet-mongodb
     restart: always
     logging:
@@ -94,8 +95,8 @@ services:
 
   account-mongodb:
     environment:
-      INIT_DUMP: account-service-dump.js
-      MONGODB_PASSWORD: $MONGODB_PASSWORD
+      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
     image: mservicet-mongodb
     restart: always
     logging:
@@ -124,8 +125,8 @@ services:
 
   trainer-mongodb:
     environment:
-      INIT_DUMP: trainer-service-dump.js
-      MONGODB_PASSWORD: $MONGODB_PASSWORD
+      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
     image: mservicet-mongodb
     restart: always
     logging:

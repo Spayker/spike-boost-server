@@ -2,7 +2,7 @@
  * Creates pre-filled demo account
  */
 
-print('dump start');
+print('account dump start');
 
 db.accounts.update(
     { "_id": "demo" },
@@ -15,4 +15,4 @@ db.accounts.update(
     { upsert: true }
 );
 
-print('dump complete');
+print('account dump complete');

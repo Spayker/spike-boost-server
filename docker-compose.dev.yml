@@ -30,6 +30,14 @@ services:
     ports:
       - $AUTH_MONGODB_EXTERNAL_DEV_PORT:$MONGODB_SERVICE_INTERNAL_DEV_PORT
 
+  registry:
+    environment:
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS}${REGISTRY_SERVICE_DEV_DEBUG_PORT}
+    build: registry
+    ports:
+      - $REGISTRY_SERVICE_DEV_PORT:$REGISTRY_SERVICE_DEV_PORT
+      - $REGISTRY_SERVICE_DEV_DEBUG_PORT:$REGISTRY_SERVICE_DEV_DEBUG_PORT
+
   account-service:
     environment:
       JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS}${ACCOUNT_SERVICE_DEV_DEBUG_PORT}
@@ -42,6 +50,8 @@ services:
     build: mongodb
     ports:
       - $ACCOUNT_MONGODB_EXTERNAL_DEV_PORT:$MONGODB_SERVICE_INTERNAL_DEV_PORT
+    volumes:
+      - ./mongodb/dump/account-service-dump.js:/docker-entrypoint-initdb.d/account-service-dump.js:ro
 
   trainer-service:
     environment:
@@ -55,14 +65,8 @@ services:
     build: mongodb
     ports:
       - $TRAINER_MONGODB_EXTERNAL_DEV_PORT:$MONGODB_SERVICE_INTERNAL_DEV_PORT
-
-  registry:
-    environment:
-      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS}${REGISTRY_SERVICE_DEV_DEBUG_PORT}
-    build: registry
-    ports:
-      - $REGISTRY_SERVICE_DEV_PORT:$REGISTRY_SERVICE_DEV_PORT
-      - $REGISTRY_SERVICE_DEV_DEBUG_PORT:$REGISTRY_SERVICE_DEV_DEBUG_PORT
+    volumes:
+      - ./mongodb/dump/trainer-service-dump.js:/docker-entrypoint-initdb.d/trainer-service-dump.js:ro
 
   rabbitmq:
     ports:
