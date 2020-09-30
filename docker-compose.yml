@@ -97,6 +97,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
       MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
+      MONGO_INITDB_DATABASE: mservicet
     image: mservicet-mongodb
     restart: always
     logging:
@@ -127,6 +128,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
       MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
+      MONGO_INITDB_DATABASE: mservicet
     image: mservicet-mongodb
     restart: always
     logging:
