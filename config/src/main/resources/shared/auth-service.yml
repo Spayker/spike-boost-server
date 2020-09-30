@@ -6,6 +6,7 @@ spring:
       password: ${MONGODB_PASSWORD}
       database: mservicet
       port: ${MONGODB_SERVICE_INTERNAL_DEV_PORT}
+      authentication-database: admin
 
 server:
   servlet:

@@ -6,6 +6,8 @@ security:
       accessTokenUri: http://auth-service:${AUTH_SERVICE_DEV_PORT}/mservicet/oauth/token
       grant-type: client_credentials
       scope: server
+    resource:
+      user-info-uri: http://auth-service:${AUTH_SERVICE_DEV_PORT}/mservicet/users/current
 
 spring:
   data:
@@ -15,6 +17,7 @@ spring:
       password: ${MONGODB_PASSWORD}
       database: mservicet
       port: ${MONGODB_SERVICE_INTERNAL_DEV_PORT}
+      authentication-database: admin
 
 server:
   servlet:
