@@ -1,0 +1,6 @@
+language: java
+dist: xenial
+sudo: required
+
+jdk:
+  - openjdk11
