@@ -3,20 +3,18 @@
 
 # SpikeBoost Server Part
 
-Project helps to automate process of music selection while current active activity of user.
+Project helps to automate process of music selection while an user is doing some physical activity.
 Since first stage of development relates mostly to PoC, only basic functionality will be supported:
 1) user authorization
 2) providing of trained neural-network to end-user
 3) upload of trained results to train next level of neural-network
 
-Trello board: https://trello.com/b/ay9yWtE9/sbp-server
-
 ## Description
 Current server's concept approximately looks:
 ![alt text](resources/diagrams/spikeboost_service_architecture_mk1.jpg)
 
-Soundtracks music will be kept locally on client side. Once a physical activity has been finished the server can receive
-post request with training details. Usually training details contains a list of soundtracks which were playing during
+Soundtracks music will be kept locally on client side. Once, a physical activity has been finished the server can receive
+POST request with training details. Usually training details contain a list of soundtracks which were playing during
 a training. Including other sort of data, next training of neural-network can be started. Finally, a new version of neural network
 can be sent back to client-side.
 
